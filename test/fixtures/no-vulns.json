@@ -1,0 +1,11 @@
+{
+  "actions": [],
+  "advisories": {},
+  "muted": [],
+  "metadata":{
+    "dependencies": 375,
+    "devDependencies": 466,
+    "optionalDependencies": 77,
+    "totalDependencies": 918
+  }    
+}
