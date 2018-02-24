@@ -2,6 +2,33 @@
 
 const colors = require('ansicolors')
 const styles = require('ansistyles')
+const Table = require('cli-table2')
+
+const severity = {
+  critical: {
+    stars: '****',
+    color: colors.magenta
+  },
+  high: {
+    stars: '***',
+    color: colors.red
+  },
+  moderate: {
+    stars: '**',
+    color: colors.yellow
+  },
+  low: {
+    stars: '*',
+    color: function (str) { return str }
+  }
+}
+
+const severityLabel = function (sev, star = true) {
+  if (star) {
+    return severity[sev].color(severity[sev].stars)
+  }
+  return severity[sev].color(sev)
+}
 
 const report = function (data, options, logger = console) {
   const defaults = {
@@ -11,7 +38,7 @@ const report = function (data, options, logger = console) {
   const config = Object.assign({}, defaults, options)
 
   const header = function () {
-    logger.log('npm audit security report\n')
+    logger.log('npm audit - security report\n')
   }
 
   const footer = function (data, vulnData, config) {
@@ -19,7 +46,13 @@ const report = function (data, options, logger = console) {
       return logger.log(`${colors.green('[+]')} no known vulnerabilities found (${data.metadata.totalDependencies} dependencies audited)`)
     }
     logger.log(`${colors.red('[!]')} ${vulnData.total} vulnerabilities found (${data.metadata.totalDependencies} dependencies audited)`)
-    logger.log(`    ${vulnData.critical} critical | ${vulnData.high} high | ${vulnData.moderate} moderate | ${vulnData.low} low`)
+    //logger.log(`    ${vulnData.critical} critical | ${vulnData.high} high | ${vulnData.moderate} moderate | ${vulnData.low} low`)
+    const keys = Object.keys(vulnData).filter((key) => key !== 'total' && vulnData[key] > 0)
+    let vulns = ''
+    keys.forEach((key) => {
+      vulns = `${vulns} ${vulnData[key]} ${key}`
+    })
+    logger.log(vulns)
   }
 
   const actions = function (data, config) {
@@ -32,14 +65,85 @@ const report = function (data, options, logger = console) {
     }
 
     data.actions.forEach((action) => {
-      // logger.log(`${styles.underline('Actions')}`)
-      if (action.action === 'update') {
-        vulnData.total = vulnData.total + action.resolves.length
+      let updateFlag = false
+      let reviewFlag = false
 
-        logger.log(`${styles.underline(getSummaryInstallCmd(data, config))}`)
-      } else if (action.action === 'review') {
+      if (action.action === 'update') {
+        if (!updateFlag) {
+          //logger.log('Vulnerabilities with an upgrade path')
+        }
         vulnData.total = vulnData.total + action.resolves.length
-        logger.log(`Review ${action.module_name}@${action.version}`)
+        updateFlag = true
+
+        const table = new Table({
+          style: {
+            head: []
+          },
+          head: []
+        })
+
+        table.push([{
+          colSpan: 2,
+          hAlign: 'center',
+          content: `\nRun ${styles.underline(getInstallCmd(action, config))} to fix\n`
+        }])
+
+        action.resolves.forEach((resolution) => {
+          const advisory = data.advisories[resolution.id]
+          vulnData[advisory.severity]++
+
+          if (table.length > 1) {
+            // Spacer
+            table.push([{
+              colSpan: 2,
+              content: ''
+            }])
+          }
+          table.push(
+            [severityLabel(advisory.severity), `${advisory.title}`],
+            ['Package', `${advisory.module}@${advisory.version}`],
+            ['Location', resolution.path],
+            ['Details', `https://nodesecurity.io/advisories/${advisory.id}`]
+          )
+        })
+
+        logger.log(table.toString())
+
+      } else if (action.action === 'review') {
+        if (!reviewFlag) {
+          logger.log('\n\n')
+        }
+        vulnData.total = vulnData.total + action.resolves.length
+        reviewFlag = true
+
+        const table = new Table({
+          style: {
+            head: []
+          },
+          head: []
+        })
+
+        table.push([{
+          colSpan: 2,
+          hAlign: 'center',
+          content: `\nPlease Review\n`
+        }])
+
+        const spacer = true
+        action.resolves.forEach((resolution) => {
+          const advisory = data.advisories[resolution.id]
+          vulnData[advisory.severity]++
+
+          table.push(
+            [severityLabel(advisory.severity), `${advisory.title}`],
+            ['Package', `${advisory.module}@${advisory.version}`],
+            ['Location', resolution.path],
+            ['Details', `https://nodesecurity.io/advisories/${advisory.id}`]
+          )
+
+          logger.log(table.toString())
+        })
+
       }
     })
 
@@ -55,10 +159,13 @@ const report = function (data, options, logger = console) {
   })
 }
 
+const getInstallCmd = function (action, config) {
+  return `npm install ${action.module_name}@${action.version}`
+}
+
 const getSummaryInstallCmd = function (data, config) {
   const actions = data.actions.map(function (action) {
     if (action.action === 'update') {
-      console.log(`${action.module_name}@${action.version}`)
       return `${action.module_name}@${action.version}`
     }
   })

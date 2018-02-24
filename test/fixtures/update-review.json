@@ -4,11 +4,17 @@
       "action": "update",
       "module_name": "marked",
       "version": "0.3.1",
+      "installed": "0.3.0",
+      "change": "patch",      
       "resolves": [
         { 
           "id": 22, 
           "path": "path>to>module" 
-        }
+        },
+        { 
+          "id": 220, 
+          "path": "path>to>module" 
+        }        
       ]
     },
     {
@@ -17,7 +23,7 @@
       "version": "1.2.3",
       "resolves": [
         { 
-          "id": 22, 
+          "id": 23, 
           "path": "foo>bar>nhouston" 
         }
       ]
@@ -29,9 +35,8 @@
       "updated_at": "2016-04-29T16:51:20.000Z",
       "created_at": "2015-10-17T19:41:46.382Z",
       "timeline": [{"date": "2014-01-31T08:33:12.000Z", "note": "Published on"}],
-      "overview": "Marked comes with an option to sanitize user output to help protect against content injection attacks.\n\n```sanitize: true```\n\nEven if this option is set, marked is vulnerable to content injection in multiple locations if untrusted user input is allowed to be provided into marked and that output is passed to the browser.\n\nInjection is possible in two locations\n\n- gfm codeblocks (language)\n- javascript url's",
       "recommendation": "- Upgrade to version 0.3.1 or later",
-      "severity": "medium",
+      "severity": "critical",
       "module": "marked",
       "version": "0.3.0",
       "vulnerable_versions": "<= 0.3.0",
@@ -42,16 +47,32 @@
         "marked@0.3.0"
       ]
     },
+    "220": {
+      "id": 220,
+      "updated_at": "2016-04-29T16:51:20.000Z",
+      "created_at": "2015-10-17T19:41:46.382Z",
+      "timeline": [{"date": "2014-01-31T08:33:12.000Z", "note": "Published on"}],
+      "recommendation": "- Upgrade to version 0.3.1 or later",
+      "severity": "moderate",
+      "module": "marked",
+      "version": "0.3.0",
+      "vulnerable_versions": "<= 0.3.0",
+      "patched_versions": ">= 0.3.1",
+      "title": "Multiple Content Injection Vulnerabilities",
+      "path": [
+        "yourproject@1.0.0",
+        "marked@0.3.0"
+      ]
+    },    
     "23": {
       "id": 23,
       "updated_at": "2016-04-29T16:51:20.000Z",
       "created_at": "2015-10-17T19:41:46.382Z",
       "timeline": [{"date": "2014-01-31T08:33:12.000Z", "note": "Published on"}],
-      "overview": "No idea but it's vulnerable",
       "recommendation": "No upgrade currently exists, ",
-      "severity": "medium",
-      "module": "marked",
-      "version": "0.3.0",
+      "severity": "low",
+      "module": "nhouston",
+      "version": "1.2.3",
       "vulnerable_versions": "<= 0.3.0",
       "patched_versions": ">= 0.3.1",
       "title": "Multiple Content Injection Vulnerabilities",
