@@ -23,7 +23,7 @@ const severity = {
   }
 }
 
-const severityLabel = function (sev, star = true) {
+const severityLabel = function (sev, star = false) {
   if (star) {
     return severity[sev].color(severity[sev].stars)
   }
@@ -38,7 +38,7 @@ const report = function (data, options, logger = console) {
   const config = Object.assign({}, defaults, options)
 
   const header = function () {
-    logger.log('npm audit - security report\n')
+    logger.log('\n=== npm audit security report ===\n')
   }
 
   const footer = function (data, vulnData, config) {
@@ -46,11 +46,10 @@ const report = function (data, options, logger = console) {
       return logger.log(`${colors.green('[+]')} no known vulnerabilities found (${data.metadata.totalDependencies} dependencies audited)`)
     }
     logger.log(`${colors.red('[!]')} ${vulnData.total} vulnerabilities found (${data.metadata.totalDependencies} dependencies audited)`)
-    //logger.log(`    ${vulnData.critical} critical | ${vulnData.high} high | ${vulnData.moderate} moderate | ${vulnData.low} low`)
     const keys = Object.keys(vulnData).filter((key) => key !== 'total' && vulnData[key] > 0)
-    let vulns = ''
+    let vulns = '   '
     keys.forEach((key) => {
-      vulns = `${vulns} ${vulnData[key]} ${key}`
+      vulns = `${vulns} ${vulnData[key]} ${key} |`
     })
     logger.log(vulns)
   }
@@ -126,7 +125,7 @@ const report = function (data, options, logger = console) {
         table.push([{
           colSpan: 2,
           hAlign: 'center',
-          content: `\nPlease Review\n`
+          content: `\nPlease Review\nThese vulnerabilities require your attention to resolve\n`
         }])
 
         const spacer = true

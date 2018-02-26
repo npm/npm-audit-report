@@ -5,7 +5,7 @@
       "module_name": "marked",
       "version": "0.3.1",
       "installed": "0.3.0",
-      "change": "patch",      
+      "change": "major",      
       "resolves": [
         { 
           "id": 22, 
@@ -75,7 +75,7 @@
       "version": "1.2.3",
       "vulnerable_versions": "<= 0.3.0",
       "patched_versions": ">= 0.3.1",
-      "title": "Multiple Content Injection Vulnerabilities",
+      "title": "Directory Traversal",
       "path": [
         "yourproject@1.0.0",
         "marked@0.3.0"
