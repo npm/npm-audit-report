@@ -38,19 +38,9 @@ const severity = {
   }
 }
 
-const blocks = {
-  low: '▉',
-  moderate: `▉${colors.yellow('▉')}`,
-  high: `▉${colors.yellow('▉')}${colors.red('▉')}`,
-  critical: `▉${colors.yellow('▉')}${colors.red('▉')}${colors.magenta('▉')}`
-}
-
 const severityLabel = function (sev, style = 'stars') {
   if (style === 'stars') {
     return severity[sev].color(severity[sev].stars)
-  }
-  if (style === 'blocks') {
-    return blocks[sev]
   }
   return severity[sev].color(sev)
 }
@@ -63,9 +53,6 @@ const report = function (data, options, logger = console) {
   const config = Object.assign({}, defaults, options)
 
   return new Promise((resolve, reject) => {
-
-    logger.log('npm WARN npm-audit-report@1.0.0 No repository field.')
-
     if (Object.keys(data.advisories).length === 0) {
       logger.log(`${colors.green('[+]')} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
     } else {
@@ -94,15 +81,10 @@ const report = function (data, options, logger = console) {
         return `${value[1]} ${severityLabel(value[0], false)}`
       }).join(' | ')
 
-      logger.log(`npm WARN ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)      
-      logger.log(`npm WARN ${severities}`)
-      logger.log(`npm WARN Run \`npm audit\` for more detail`)
+      logger.log(`${colors.red('[!]')} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)
+      logger.log(`    ${severities}`)
+      logger.log(`    Run \`npm audit\` for more detail`)
     }
-    logger.log('\nadded 918 packages from 400 contributors in 10.939s')
-    // severityCounts.map((k,v) => {
-    //   console.log(k,v)
-
-    // })
     return resolve()
   })
 }
