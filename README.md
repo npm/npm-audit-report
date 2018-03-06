@@ -16,3 +16,8 @@ Report(response, options, (result) => {
   // done rendering report
 })
 ```
+
+response: the response from the security audit API
+
+options:
+- reporter: specify which output format you want to use  

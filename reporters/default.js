@@ -100,7 +100,7 @@ const report = function (data, options, logger = console) {
           const advisory = data.advisories[resolution.id]
           logger.log(`   - ${advisory.title} in ${advisory.module}@${advisory.version} (${resolution.path})) [${severityLabel(advisory.severity)}]`)
         })
-        logger.log()        
+        logger.log()
       }
     })
   }
