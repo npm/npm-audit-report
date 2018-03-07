@@ -5,7 +5,7 @@ const reporters = Keyfob.load({path: './reporters', fn: require})
 
 const report = function (data, options, logger = console) {
   const defaults = {
-    reporter: 'default'
+    reporter: 'install'
   }
 
   const config = Object.assign({}, defaults, options)
