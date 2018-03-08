@@ -94,7 +94,7 @@ const report = function (data, options, logger = console) {
           action.resolves.forEach((resolution) => {
             const advisory = data.advisories[resolution.id]
             const table = new Table({
-              colWidths: [15, 64],
+              colWidths: [15, 62],
               wordWrap: true
             })
 
@@ -113,7 +113,7 @@ const report = function (data, options, logger = console) {
         if (action.action === 'review') {
           if (!reviewFlag) {
             const table = new Table({
-              colWidths: [80]
+              colWidths: [78]
             })
             table.push([{
               content: 'Manual Review\nSome vulnerabilities require your attention to resolve',
@@ -128,7 +128,7 @@ const report = function (data, options, logger = console) {
           action.resolves.forEach((resolution) => {
             const advisory = data.advisories[resolution.id]
             const table = new Table({
-              colWidths: [15, 64],
+              colWidths: [15, 62],
               wordWrap: true
             })
             const header = {}
