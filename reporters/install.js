@@ -1,20 +1,5 @@
 'use strict'
 
-/*
-Add vuln metadata
-  total: 0,
-  critical: 0,
-  high: 0,
-  moderate: 0,
-  low: 0
-
-Make actions an object
-{
-  update: []
-  review: []
-}
-*/
-
 const colors = require('ansicolors')
 const styles = require('ansistyles')
 const Table = require('cli-table2')
