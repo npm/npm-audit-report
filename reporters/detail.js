@@ -1,53 +1,18 @@
 'use strict'
 
 const colors = require('ansicolors')
-const styles = require('ansistyles')
 const Table = require('cli-table2')
 
-const blankChars = {
-  'top': ' ',
-  'top-mid': ' ',
-  'top-left': ' ',
-  'top-right': ' ',
-  'bottom': ' ',
-  'bottom-mid': ' ',
-  'bottom-left': ' ',
-  'bottom-right': ' ',
-  'left': ' ',
-  'left-mid': ' ',
-  'mid': ' ',
-  'mid-mid': ' ',
-  'right': ' ',
-  'right-mid': ' ',
-  'middle': ' '
-}
-
-const severity = {
-  critical: {
-    stars: '****',
-    color: colors.magenta
-  },
-  high: {
-    stars: '***',
-    color: colors.red
-  },
-  moderate: {
-    stars: '**',
-    color: colors.yellow
-  },
-  low: {
-    stars: '*',
-    color: function (str) { return str }
-  }
+const severityColors = {
+  critical: colors.magenta,
+  high: colors.red,
+  moderate: colors.yellow,
+  low: function (str) { return str }
 }
 
 const severityLabel = function (sev, star = false) {
-  if (star) {
-    return severity[sev].color(severity[sev].stars)
-  }
-  return severity[sev].color(sev)
+  return severityColors[sev](sev)
 }
-
 
 const report = function (data, options, logger = console) {
   const defaults = {
@@ -149,7 +114,7 @@ const report = function (data, options, logger = console) {
 
   return new Promise((resolve, reject) => {
     header()
-    const report = actions(data, config)
+    actions(data, config)
     footer(data.metadata)
 
     return resolve()
