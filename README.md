@@ -1,7 +1,9 @@
 
 # npm audit security report
 
-Given a response from the npm security api, render it into a hopefully useful terminal response.
+Given a response from the npm security api, render it into a variety of security reports.
+
+The response is `true` or `false` depending on if vulnerabilities were found that are >= the severityThreshold option.
 
 
 ## Basic usage
@@ -11,8 +13,7 @@ Given a response from the npm security api, render it into a hopefully useful te
 const Report = require('npm-audit-report')
 
 Report(response, options, (result) => {
-  // Result contains hints as to what was found in the report to influence things like
-  // exit codes
+  // result is either true or false
   // done rendering report
 })
 ```
@@ -20,4 +21,8 @@ Report(response, options, (result) => {
 response: the response from the security audit API
 
 options:
-- reporter: specify which output format you want to use  
+- reporter: specify which output format you want to use
+- severityThreshold: specify the severity threshold for reporting
+  example: If you specify high, then only vulnerabilities with high and critical would be displayed.
+
+

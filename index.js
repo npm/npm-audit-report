@@ -1,17 +1,23 @@
 'use strict'
 
-const Keyfob = require('keyfob')
-const reporters = Keyfob.load({path: './reporters', fn: require})
+// const Keyfob = require('keyfob')
+// const reporters = Keyfob.load({path: './reporters', fn: require})
 
-const report = function (data, options, logger = console) {
+const reporters = {
+  install: require('./reporters/install'),
+  detail: require('./reporters/detail'),
+  json: require('./reporters/json')
+}
+
+const report = function (data, options) {
   const defaults = {
     reporter: 'install'
   }
 
   const config = Object.assign({}, defaults, options)
   return new Promise((resolve, reject) => {
-    reporters[config.reporter](data, config, logger)
-    return resolve()
+    const result = reporters[config.reporter](data, config)
+    return resolve(result)
   })
 }
 

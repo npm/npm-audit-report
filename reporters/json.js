@@ -1,16 +1,14 @@
 'use strict'
 
-const report = function (data, options, logger = console) {
+const report = function (data, options) {
   const defaults = {
+    indent: 2
   }
 
   const config = Object.assign({}, defaults, options)
 
-  return new Promise((resolve, reject) => {
-    const json = JSON.stringify(data, null, 2)
-    logger.log(json)
-    return resolve()
-  })
+  const json = JSON.stringify(data, null, config.indent)
+  return json
 }
 
 module.exports = report

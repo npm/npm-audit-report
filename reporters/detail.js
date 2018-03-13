@@ -1,29 +1,39 @@
 'use strict'
 
-const colors = require('ansicolors')
 const Table = require('cli-table2')
+const Utils = require('../lib/utils')
 
-const severityColors = {
-  critical: colors.magenta,
-  high: colors.red,
-  moderate: colors.yellow,
-  low: function (str) { return str }
-}
-
-const severityLabel = function (sev, star = false) {
-  return severityColors[sev](sev)
-}
-
-const report = function (data, options, logger = console) {
+const report = function (data, options) {
   const defaults = {
-    severityThreshold: ''
+    severityThreshold: 'info',
+    withColor: true,
+    unicode: true
+  }
+
+  const blankChars = {
+    'top': ' ',
+    'top-mid': ' ',
+    'top-left': ' ',
+    'top-right': ' ',
+    'bottom': ' ',
+    'bottom-mid': ' ',
+    'bottom-left': ' ',
+    'bottom-right': ' ',
+    'left': ' ',
+    'left-mid': ' ',
+    'mid': ' ',
+    'mid-mid': ' ',
+    'right': ' ',
+    'right-mid': ' ',
+    'middle': ' '
   }
 
   const config = Object.assign({}, defaults, options)
 
-  const header = function () {
-    const date = new Date()
-    logger.log(`# npm audit security report - ${date}`)
+  let output = ''
+
+  const log = function (value) {
+    output = output + value + '\n'
   }
 
   const footer = function (metadata) {
@@ -35,16 +45,19 @@ const report = function (data, options, logger = console) {
         return true
       }
     }).map((value) => {
-      return `${value[1]} ${severityLabel(value[0], false)}`
+      return `${value[1]} ${Utils.severityLabel(value[0], false)}`
     }).join(' | ')
 
-    logger.log(`\n${colors.red('[!]')} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)
-    logger.log(`    ${severities}`)
+    log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)
+    log(`    ${severities}`)
   }
 
   const actions = function (data, config) {
+    const date = new Date()
+    log(`# npm audit security report - ${date}`)
+
     if (Object.keys(data.advisories).length === 0) {
-      logger.log(`${colors.green('[+]')} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
+      log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
     } else {
       // vulns found display a report.
 
@@ -54,17 +67,21 @@ const report = function (data, options, logger = console) {
         if (action.action === 'update' || action.action === 'install') {
           const recommendation = getRecommendation(action, config)
           const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
-          logger.log(`\n\nRun \`${recommendation.cmd}\` to resolve ${action.resolves.length} ${label}`)
+          log(`\n\nRun \`${recommendation.cmd}\` to resolve ${action.resolves.length} ${label}`)
 
           action.resolves.forEach((resolution) => {
             const advisory = data.advisories[resolution.id]
-            const table = new Table({
+            const tableOptions = {
               colWidths: [15, 62],
               wordWrap: true
-            })
+            }
+            if (!config.unicode) {
+              tableOptions.chars = blankChars
+            }
+            const table = new Table(tableOptions)
 
             const header = {}
-            header[severityLabel(advisory.severity)] = advisory.title
+            header[Utils.severityLabel(advisory.severity)] = advisory.title
             table.push(
               header,
               {'Package': advisory.module_name},
@@ -72,32 +89,42 @@ const report = function (data, options, logger = console) {
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
 
-            return logger.log(table.toString())
+            log(table.toString())
+            return output
           })
         }
         if (action.action === 'review') {
           if (!reviewFlag) {
-            const table = new Table({
+            const tableOptions = {
               colWidths: [78]
-            })
+            }
+            if (!config.unicode) {
+              tableOptions.chars = blankChars
+            }
+            const table = new Table(tableOptions)
             table.push([{
               content: 'Manual Review\nSome vulnerabilities require your attention to resolve',
               vAlign: 'center',
               hAlign: 'center'
             }])
-            logger.log('\n\n')
-            logger.log(table.toString())
+            log('\n\n')
+            log(table.toString())
           }
           reviewFlag = true
 
           action.resolves.forEach((resolution) => {
             const advisory = data.advisories[resolution.id]
-            const table = new Table({
+            const tableOptions = {
               colWidths: [15, 62],
               wordWrap: true
-            })
+            }
+            if (!config.unicode) {
+              tableOptions.chars = blankChars
+            }
+            const table = new Table(tableOptions)
+
             const header = {}
-            header[severityLabel(advisory.severity)] = advisory.title
+            header[Utils.severityLabel(advisory.severity, config.withColor)] = advisory.title
             table.push(
               header,
               {'Package': advisory.module_name},
@@ -105,20 +132,18 @@ const report = function (data, options, logger = console) {
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
 
-            return logger.log(table.toString())
+            log(table.toString())
+            return output
           })
         }
       })
     }
   }
 
-  return new Promise((resolve, reject) => {
-    header()
-    actions(data, config)
-    footer(data.metadata)
+  actions(data, config)
+  footer(data.metadata)
 
-    return resolve()
-  })
+  return output
 }
 
 const getRecommendation = function (action, config) {
