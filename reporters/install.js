@@ -4,8 +4,7 @@ const Utils = require('../lib/utils')
 
 const report = function (data, options) {
   const defaults = {
-    severityThreshold: 'info',
-    withColor: true
+    severityThreshold: 'info'
   }
 
   const config = Object.assign({}, defaults, options)
@@ -18,7 +17,10 @@ const report = function (data, options) {
 
   if (Object.keys(data.advisories).length === 0) {
     log(`${Utils.colors('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
-    return output
+    return {
+      output: output,
+      exitCode: 0
+    }
   } else {
     let total = 0
 
@@ -34,7 +36,10 @@ const report = function (data, options) {
     log(`${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)
     log(`    ${severities}`)
     log(`    Run \`npm audit\` for more detail`)
-    return output
+    return {
+      output: output,
+      exitCode: 1
+    }
   }
 }
 

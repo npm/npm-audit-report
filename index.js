@@ -1,8 +1,5 @@
 'use strict'
 
-// const Keyfob = require('keyfob')
-// const reporters = Keyfob.load({path: './reporters', fn: require})
-
 const reporters = {
   install: require('./reporters/install'),
   detail: require('./reporters/detail'),
@@ -11,7 +8,9 @@ const reporters = {
 
 const report = function (data, options) {
   const defaults = {
-    reporter: 'install'
+    reporter: 'install',
+    withColor: true,
+    withUnicode: true
   }
 
   const config = Object.assign({}, defaults, options)

@@ -5,9 +5,7 @@ const Utils = require('../lib/utils')
 
 const report = function (data, options) {
   const defaults = {
-    severityThreshold: 'info',
-    withColor: true,
-    unicode: true
+    severityThreshold: 'info'
   }
 
   const blankChars = {
@@ -31,6 +29,7 @@ const report = function (data, options) {
   const config = Object.assign({}, defaults, options)
 
   let output = ''
+  let exit = 0
 
   const log = function (value) {
     output = output + value + '\n'
@@ -48,6 +47,9 @@ const report = function (data, options) {
       return `${value[1]} ${Utils.severityLabel(value[0], false)}`
     }).join(' | ')
 
+    if (total > 0) {
+      exit = 1
+    }
     log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)
     log(`    ${severities}`)
   }
@@ -75,7 +77,7 @@ const report = function (data, options) {
               colWidths: [15, 62],
               wordWrap: true
             }
-            if (!config.unicode) {
+            if (!config.withUnicode) {
               tableOptions.chars = blankChars
             }
             const table = new Table(tableOptions)
@@ -90,7 +92,6 @@ const report = function (data, options) {
             )
 
             log(table.toString())
-            return output
           })
         }
         if (action.action === 'review') {
@@ -98,7 +99,7 @@ const report = function (data, options) {
             const tableOptions = {
               colWidths: [78]
             }
-            if (!config.unicode) {
+            if (!config.withUnicode) {
               tableOptions.chars = blankChars
             }
             const table = new Table(tableOptions)
@@ -118,7 +119,7 @@ const report = function (data, options) {
               colWidths: [15, 62],
               wordWrap: true
             }
-            if (!config.unicode) {
+            if (!config.withUnicode) {
               tableOptions.chars = blankChars
             }
             const table = new Table(tableOptions)
@@ -133,7 +134,6 @@ const report = function (data, options) {
             )
 
             log(table.toString())
-            return output
           })
         }
       })
@@ -143,7 +143,10 @@ const report = function (data, options) {
   actions(data, config)
   footer(data.metadata)
 
-  return output
+  return {
+    output: output,
+    exitCode: exit
+  }
 }
 
 const getRecommendation = function (action, config) {
