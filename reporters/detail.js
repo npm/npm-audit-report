@@ -144,7 +144,7 @@ const report = function (data, options) {
   footer(data.metadata)
 
   return {
-    output: output,
+    report: output,
     exitCode: exit
   }
 }

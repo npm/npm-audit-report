@@ -8,7 +8,10 @@ const report = function (data, options) {
   const config = Object.assign({}, defaults, options)
 
   const json = JSON.stringify(data, null, config.indent)
-  return json
+  return {
+    report: json,
+    exitCode: 0
+  }
 }
 
 module.exports = report

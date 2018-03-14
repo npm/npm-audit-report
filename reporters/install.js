@@ -16,9 +16,9 @@ const report = function (data, options) {
   }
 
   if (Object.keys(data.advisories).length === 0) {
-    log(`${Utils.colors('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
+    log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
     return {
-      output: output,
+      report: output,
       exitCode: 0
     }
   } else {
@@ -37,7 +37,7 @@ const report = function (data, options) {
     log(`    ${severities}`)
     log(`    Run \`npm audit\` for more detail`)
     return {
-      output: output,
+      report: output,
       exitCode: 1
     }
   }

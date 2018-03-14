@@ -2,7 +2,7 @@
   "actions": [],
   "advisories": {},
   "muted": [],
-  "metadata":{
+  "metadata": {
     "dependencies": 375,
     "devDependencies": 466,
     "optionalDependencies": 77,
@@ -14,5 +14,5 @@
       "high": 0,
       "critical": 0
     }
-  }    
+  }
 }
