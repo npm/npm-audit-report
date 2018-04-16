@@ -34,7 +34,7 @@ const report = function (data, options) {
     }).join(' | ')
 
     log(`${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)
-    log(`    ${severities}`)
+    log(`    Severity: ${severities}`)
     log(`    Run \`npm audit\` for more detail`)
     return {
       report: output,

@@ -51,12 +51,27 @@ const report = function (data, options) {
       exit = 1
     }
     log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)
-    log(`    ${severities}`)
+    log(`    Severity: ${severities}`)
+  }
+
+  const reportTitle = function () {
+    const tableOptions = {
+      colWidths: [78]
+    }
+    tableOptions.chars = blankChars
+    const table = new Table(tableOptions)
+    table.push([{
+      content: '### npm audit security report ===',
+      vAlign: 'center',
+      hAlign: 'center'
+    }])
+    log(table.toString())    
   }
 
   const actions = function (data, config) {
     const date = new Date()
-    log(`# npm audit security report - ${date}`)
+    // log(`# npm audit security report - ${date}`)
+    reportTitle()
 
     if (Object.keys(data.advisories).length === 0) {
       log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
@@ -67,6 +82,7 @@ const report = function (data, options) {
 
       data.actions.forEach((action) => {
         if (action.action === 'update' || action.action === 'install') {
+          found = true
           const recommendation = getRecommendation(action, config)
           const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
           log(`\n\nRun \`${recommendation.cmd}\` to resolve ${action.resolves.length} ${label}`)
@@ -132,8 +148,7 @@ const report = function (data, options) {
               {'Dependency of': resolution.path.split('>')[0]},
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
-
-            log(table.toString())
+            log(table.toString())  
           })
         }
       })
