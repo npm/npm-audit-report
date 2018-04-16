@@ -61,7 +61,7 @@ const report = function (data, options) {
     tableOptions.chars = blankChars
     const table = new Table(tableOptions)
     table.push([{
-      content: '### npm audit security report ===',
+      content: '=== npm audit security report ===',
       vAlign: 'center',
       hAlign: 'center'
     }])

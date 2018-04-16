@@ -8,9 +8,14 @@
     "lint:fix": "standard --fix",
     "test": "tap --100 test/*-test.js"
   },
-  "keywords": [],
+  "keywords": [
+    "npm",
+    "security",
+    "report",
+    "audit"
+  ],
   "author": "Adam Baldwin",
-  "license": "UNLICENSED",
+  "license": "ISC",
   "dependencies": {
     "ansicolors": "^0.3.2",
     "ansistyles": "^0.1.3",
