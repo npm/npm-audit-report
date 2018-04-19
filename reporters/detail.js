@@ -109,6 +109,7 @@ const report = function (data, options) {
               {[Utils.severityLabel(advisory.severity)]: advisory.title},
               {'Package': advisory.module_name},
               {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
+              {'Path': `${resolution.path.split('>').join(' > ')}`},
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
 
@@ -149,7 +150,7 @@ const report = function (data, options) {
               {[Utils.severityLabel(advisory.severity, config.withColor)]: advisory.title},
               {'Package': advisory.module_name},
               {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
-              {'Path': `${resolution.path.split('>').join(' > ')}`},              
+              {'Path': `${resolution.path.split('>').join(' > ')}`},
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
             log(table.toString())  
