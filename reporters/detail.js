@@ -50,8 +50,13 @@ const report = function (data, options) {
     if (total > 0) {
       exit = 1
     }
-    log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)
-    log(`    Severity: ${severities}`)
+    if (total === 0) {
+      log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found`)
+      log(`    Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
+    } else {
+      log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found - Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`) 
+      log(`    Severity: ${severities}`)
+    }
   }
 
   const reportTitle = function () {
@@ -65,16 +70,16 @@ const report = function (data, options) {
       vAlign: 'center',
       hAlign: 'center'
     }])
-    log(table.toString())    
+    log(table.toString())
   }
 
   const actions = function (data, config) {
     const date = new Date()
-    // log(`# npm audit security report - ${date}`)
     reportTitle()
 
     if (Object.keys(data.advisories).length === 0) {
-      log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
+      //log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
+      return
     } else {
       // vulns found display a report.
 
@@ -82,10 +87,12 @@ const report = function (data, options) {
 
       data.actions.forEach((action) => {
         if (action.action === 'update' || action.action === 'install') {
-          found = true
           const recommendation = getRecommendation(action, config)
           const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
-          log(`\n\nRun \`${recommendation.cmd}\` to resolve ${action.resolves.length} ${label}`)
+          log(`\n\n# Run \`${recommendation.cmd}\` to resolve ${action.resolves.length} ${label}`)
+          if (recommendation.isBreaking) {
+            log(`SEMVER WARNING: Recommended action is a potentially breaking change`)
+          }
 
           action.resolves.forEach((resolution) => {
             const advisory = data.advisories[resolution.id]
@@ -98,12 +105,10 @@ const report = function (data, options) {
             }
             const table = new Table(tableOptions)
 
-            const header = {}
-            header[Utils.severityLabel(advisory.severity)] = advisory.title
             table.push(
-              header,
+              {[Utils.severityLabel(advisory.severity)]: advisory.title},
               {'Package': advisory.module_name},
-              {'Dependency of': resolution.path.split('>')[0]},
+              {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
 
@@ -140,12 +145,11 @@ const report = function (data, options) {
             }
             const table = new Table(tableOptions)
 
-            const header = {}
-            header[Utils.severityLabel(advisory.severity, config.withColor)] = advisory.title
             table.push(
-              header,
+              {[Utils.severityLabel(advisory.severity, config.withColor)]: advisory.title},
               {'Package': advisory.module_name},
-              {'Dependency of': resolution.path.split('>')[0]},
+              {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
+              {'Path': `${resolution.path.split('>').join(' > ')}`},              
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
             log(table.toString())  
@@ -165,12 +169,19 @@ const report = function (data, options) {
 }
 
 const getRecommendation = function (action, config) {
-  if (action.action === 'update') {
+
+  if (action.action === 'install') {
+    return {
+      cmd: `npm install ${action.module}@${action.target}`,
+      isBreaking: action.isMajor
+    }
+  } else {
     return {
       cmd: `npm update ${action.module} --depth ${action.depth}`,
       isBreaking: false
     }
   }
+
 }
 
 module.exports = report

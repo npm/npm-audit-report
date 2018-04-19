@@ -2,7 +2,7 @@
   "actions": [
     {
       "action": "update",
-      "module_name": "marked",
+      "module": "marked",
       "version": "0.3.1",
       "installed": "0.3.0",
       "change": "major",      
@@ -19,7 +19,7 @@
     },
     {
       "action": "review",
-      "module_name": "nhouston",
+      "module": "nhouston",
       "version": "1.2.3",
       "resolves": [
         { 
