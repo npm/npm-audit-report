@@ -125,7 +125,7 @@ const report = function (data, options) {
             }
             const table = new Table(tableOptions)
             table.push([{
-              content: 'Manual Review\nSome vulnerabilities require your attention to resolve',
+              content: 'Manual Review\nSome vulnerabilities require your attention to resolve\n\nVisit https://go.npm.me/audit-guide for additional guidance',
               vAlign: 'center',
               hAlign: 'center'
             }])
