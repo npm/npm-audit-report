@@ -54,7 +54,7 @@ const report = function (data, options) {
       log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found`)
       log(`    Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
     } else {
-      log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found - Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`) 
+      log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found - Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
       log(`    Severity: ${severities}`)
     }
   }
@@ -74,12 +74,11 @@ const report = function (data, options) {
   }
 
   const actions = function (data, config) {
-    const date = new Date()
     reportTitle()
 
     if (Object.keys(data.advisories).length === 0) {
-      //log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
-      return
+      // log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
+
     } else {
       // vulns found display a report.
 
@@ -149,11 +148,12 @@ const report = function (data, options) {
             table.push(
               {[Utils.severityLabel(advisory.severity, config.withColor)]: advisory.title},
               {'Package': advisory.module_name},
+              {'Patched in': advisory.patched_versions},
               {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
               {'Path': `${resolution.path.split('>').join(' > ')}`},
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
-            log(table.toString())  
+            log(table.toString())
           })
         }
       })
@@ -170,7 +170,6 @@ const report = function (data, options) {
 }
 
 const getRecommendation = function (action, config) {
-
   if (action.action === 'install') {
     return {
       cmd: `npm install ${action.module}@${action.target}`,
@@ -182,7 +181,6 @@ const getRecommendation = function (action, config) {
       isBreaking: false
     }
   }
-
 }
 
 module.exports = report
