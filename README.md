@@ -30,11 +30,6 @@ Report(response, options, (result) => {
 reporter: 
   specify which output format you want to use (install, detail, json)
 
-severityThreshold: 
-  specifies the severity threshold for reporting. Possible values include info, low, moderate, high, critical
-
-  example: If you specify high, then only vulnerabilities with high and critical would be displayed.
-
 withColor: 
   true || false indicates if some report elements should use colors or not
 
