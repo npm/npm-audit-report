@@ -1,0 +1,54 @@
+{
+  "actions": [{
+    "action": "install",
+    "module": "knex",
+    "target": "3.0.0",
+    "isMajor": true,
+    "resolves": [{
+      "id": 525,
+      "path": "knex>liftoff>findup-sync>micromatch>braces>expand-range>fill-range>randomatic",
+      "dev": true,
+      "optional": false
+    }]
+  }],
+  "advisories": {
+    "525": {
+      "id": 525,
+      "created": "2017-09-08T18:07:02.061Z",
+      "updated": "2017-09-22T16:26:08.422Z",
+      "deleted": null,
+      "title": "Regular Expression Denial of Service",
+      "found_by": {
+        "name": "nobody"
+      },
+      "reported_by": {
+        "name": "testdata"
+      },
+      "module_name": "knex",
+      "cves": [
+        "CVE-2017-16112"
+      ],
+      "vulnerable_versions": "<3.0.0",
+      "patched_versions": ">=3.0.0",
+      "overview": "something here",
+      "recommendation": "Please update to version 3.0.0 or greater",
+      "references": "- https://github.com/salesforce/tough-cookie/issues/92",
+      "access": "public",
+      "severity": "high",
+      "cwe": "CWE-400"
+    }
+  },
+  "muted": [],
+  "metadata": {
+    "vulnerabilities": {
+      "low": 0,
+      "moderate": 0,
+      "high": 1,
+      "critical": 0
+    },
+    "dependencies": 375,
+    "devDependencies": 466,
+    "optionalDependencies": 87,
+    "totalDependencies": 918
+  }
+}
