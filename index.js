@@ -3,7 +3,8 @@
 const reporters = {
   install: require('./reporters/install'),
   detail: require('./reporters/detail'),
-  json: require('./reporters/json')
+  json: require('./reporters/json'),
+  summary: require('./reporters/summary')
 }
 
 const report = function (data, options) {
