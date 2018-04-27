@@ -171,8 +171,10 @@ const report = function (data, options) {
 
 const getRecommendation = function (action, config) {
   if (action.action === 'install') {
+    const isDev = action.resolves[0].dev
+
     return {
-      cmd: `npm install ${action.module}@${action.target}`,
+      cmd: `npm install ${isDev ? '--dev ': ''}${action.module}@${action.target}`,
       isBreaking: action.isMajor
     }
   } else {
