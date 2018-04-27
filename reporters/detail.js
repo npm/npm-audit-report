@@ -88,7 +88,7 @@ const report = function (data, options) {
         if (action.action === 'update' || action.action === 'install') {
           const recommendation = getRecommendation(action, config)
           const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
-          log(`\n\n# Run \`${recommendation.cmd}\` to resolve ${action.resolves.length} ${label}`)
+          log(`\n\n# Run \`${Utils.color(recommendation.cmd, 'red', config.withColor)}\` to resolve ${action.resolves.length} ${label}`)
           if (recommendation.isBreaking) {
             log(`SEMVER WARNING: Recommended action is a potentially breaking change`)
           }
