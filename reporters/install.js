@@ -23,14 +23,18 @@ const report = function (data, options) {
     }
   } else {
     let total = 0
+    const sev = []
 
-    const severities = Object.entries(data.metadata.vulnerabilities).filter((value) => {
-      total = total + value[1]
-      if (value[1] > 0) {
-        return true
+    const keys = Object.keys(data.metadata.vulnerabilities)
+    for (let key of keys) {
+      const value = data.metadata.vulnerabilities[key]
+      total = total + value
+      if (value > 0) {
+        sev.push([key, value])
       }
-    }).map((value) => {
-      return `${value[1]} ${Utils.severityLabel(value[0], config.withColor)}`
+    }
+    const severities = sev.map((value) => {
+      return `${value[1]} ${Utils.severityLabel(value[0], false)}`
     }).join(' | ')
 
     log(`${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found [${data.metadata.totalDependencies} packages audited]`)

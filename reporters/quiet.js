@@ -3,9 +3,11 @@
 const report = function (data, options) {
   let total = 0
 
-  Object.entries(data.metadata.vulnerabilities).map((value) => {
-    total = total + value[1]
-  })
+  const keys = Object.keys(data.metadata.vulnerabilities)
+  for (let key of keys) {
+    const value = data.metadata.vulnerabilities[key]
+    total = total + value
+  }
 
   return {
     report: '',
