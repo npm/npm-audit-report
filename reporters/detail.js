@@ -50,15 +50,6 @@ const report = function (data, options) {
     const severities = sev.map((value) => {
       return `${value[1]} ${Utils.severityLabel(value[0], false)}`
     }).join(' | ')
-    // console.log(Object.entries(metadata.vulnerabilities))
-    // const severities = Object.entries(metadata.vulnerabilities).filter((value) => {
-    //   total = total + value[1]
-    //   if (value[1] > 0) {
-    //     return true
-    //   }
-    // }).map((value) => {
-    //   return `${value[1]} ${Utils.severityLabel(value[0], false)}`
-    // }).join(' | ')
 
     if (total > 0) {
       exit = 1
