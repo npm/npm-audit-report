@@ -5,61 +5,74 @@ const Report = require('../')
 const Keyfob = require('keyfob')
 
 const fixtures = Keyfob.load({ path: 'test/fixtures', fn: require })
-const results = Keyfob.load({ path: 'test/results' })
 
 tap.test('it generates a detail report with no vulns', function (t) {
-  const result = Report(fixtures['no-vulns'], {reporter: 'detail'})
-  t.resolveMatch(result, {
-    report: results['no-vulns-1'],
-    exitCode: 0
+  return Report(fixtures['no-vulns'], {reporter: 'detail'}).then((report) => {
+    t.match(report.exitCode, 0)
+    t.match(report.report, /no known vulnerabilities found/)
+    t.match(report.report, /Packages audited: 918 \(466 dev, 77 optional\)/)
   })
-  t.end()
 })
 
 tap.test('it generates a detail report with one vuln (update action)', function (t) {
-  const result = Report(fixtures['one-vuln'], {reporter: 'detail'})
-  t.resolveMatch(result, {
-    report: results['one-vuln-detail'],
-    exitCode: 1
+  return Report(fixtures['one-vuln'], {reporter: 'detail'}).then((report) => {
+    t.match(report.exitCode, 1)
+    t.match(report.report, /npm update tough-cookie --depth 6/)
   })
-  t.end()
 })
 
 tap.test('it generates a detail report with one vuln (install action)', function (t) {
-  const result = Report(fixtures['one-vuln-install'], {reporter: 'detail', withColor: false})
-  t.resolveMatch(result, {
-    report: results['one-vuln-detail-install'],
-    exitCode: 1
+  return Report(fixtures['one-vuln-install'], {reporter: 'detail'}).then((report) => {
+    t.match(report.exitCode, 1)
+    t.match(report.report, /npm install knex@3.0.0/)
   })
-  t.end()
+})
+
+tap.test('it generates a detail report with one vuln (install dev dep)', function (t) {
+  return Report(fixtures['one-vuln-dev'], {reporter: 'detail'}).then((report) => {
+    t.match(report.exitCode, 1)
+    t.match(report.report, /npm install --dev knex@3.0.0/)
+  })
+})
+
+tap.test('it generates a detail report with one vuln (review dev dep)', function (t) {
+  return Report(fixtures['one-vuln-dev-review'], {reporter: 'detail'}).then((report) => {
+    t.match(report.exitCode, 1)
+    t.match(report.report, /knex \[dev\]/)
+    t.match(report.report, /Manual Review/)
+  })
 })
 
 tap.test('it generates a detail report with one vuln, no color', function (t) {
-  const result = Report(fixtures['one-vuln'], {reporter: 'detail', withColor: false})
-  t.resolveMatch(result, {
-    report: results['one-vuln-detail-no-color'],
-    exitCode: 1
+  return Report(fixtures['one-vuln'], {reporter: 'detail', withColor: false}).then((report) => {
+    t.match(report.exitCode, 1)
+    t.match(report.report, /# Run `npm update tough-cookie --depth 6` to resolve 1 vulnerability/)
   })
-  t.end()
 })
 
 tap.test('it generates a detail report with one vuln, no unicode', function (t) {
-  const result = Report(fixtures['one-vuln'], {reporter: 'detail', withUnicode: false})
-  t.resolves(result)
-  t.end()
+  return Report(fixtures['one-vuln'], {reporter: 'detail', withUnicode: false}).then((report) => {
+    t.match(report.exitCode, 1)
+    t.notMatch(report.report, /┬/)
+  })
 })
 
 tap.test('it generates a detail report with some vulns', function (t) {
-  const result = Report(fixtures['some-vulns'], {reporter: 'detail'})
-  result.then((report) => {
-    console.log(report.report)
+  return Report(fixtures['some-vulns'], {reporter: 'detail'}).then((report) => {
+    t.match(report.exitCode, 1)
+    t.match(report.report, /Manual Review/)
+    t.match(report.report, /12 vulnerabilities found/)
+    t.match(report.report, /9 low \| 3 high/)
+    t.match(report.report, /Denial of Service/)
+    t.match(report.report, /Cryptographically Weak PRNG/)
   })
-  t.resolves(result)
-  t.end()
 })
 
 tap.test('it generates a detail report with review vulns, no unicode', function (t) {
-  const result = Report(fixtures['update-review'], {reporter: 'detail', withUnicode: false})
-  t.resolves(result)
-  t.end()
+  return Report(fixtures['update-review'], {reporter: 'detail', withUnicode: false}).then((report) => {
+    t.match(report.exitCode, 1)
+    t.notMatch(report.report, /┬/)
+    t.match(report.report, /Manual Review/)
+    t.match(report.report, /1 low | 1 moderate | 1 critical/)
+  })
 })
