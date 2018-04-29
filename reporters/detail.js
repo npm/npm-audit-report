@@ -55,10 +55,10 @@ const report = function (data, options) {
       exit = 1
     }
     if (total === 0) {
-      log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found`)
+      log(`${Utils.color('[+]', 'brightGreen', config.withColor)} no known vulnerabilities found`)
       log(`    Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
     } else {
-      log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found - Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
+      log(`\n${Utils.color('[!]', 'brightRed', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found - Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
       log(`    Severity: ${severities}`)
     }
   }
