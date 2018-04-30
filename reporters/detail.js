@@ -148,11 +148,12 @@ const report = function (data, options) {
               tableOptions.chars = blankChars
             }
             const table = new Table(tableOptions)
+            const patchedIn = advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions
 
             table.push(
               {[Utils.severityLabel(advisory.severity, config.withColor)]: advisory.title},
               {'Package': advisory.module_name},
-              {'Patched in': advisory.patched_versions},
+              {'Patched in': patchedIn},
               {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
               {'Path': `${resolution.path.split('>').join(' > ')}`},
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
