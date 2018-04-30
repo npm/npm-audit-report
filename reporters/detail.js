@@ -55,10 +55,10 @@ const report = function (data, options) {
       exit = 1
     }
     if (total === 0) {
-      log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found`)
+      log(`${Utils.color('[+]', 'brightGreen', config.withColor)} no known vulnerabilities found`)
       log(`    Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
     } else {
-      log(`\n${Utils.color('[!]', 'red', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found - Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
+      log(`\n${Utils.color('[!]', 'brightRed', config.withColor)} ${total} ${total === 1 ? 'vulnerability' : 'vulnerabilities'} found - Packages audited: ${data.metadata.totalDependencies} (${data.metadata.devDependencies} dev, ${data.metadata.optionalDependencies} optional)`)
       log(`    Severity: ${severities}`)
     }
   }
@@ -92,7 +92,7 @@ const report = function (data, options) {
         if (action.action === 'update' || action.action === 'install') {
           const recommendation = getRecommendation(action, config)
           const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
-          log(`\n\n# Run \`${Utils.color(recommendation.cmd, 'red', config.withColor)}\` to resolve ${action.resolves.length} ${label}`)
+          log(`\n\n# Run ${Utils.color(' ' + recommendation.cmd + ' ', 'inverse', config.withColor)} to resolve ${action.resolves.length} ${label}`)
           if (recommendation.isBreaking) {
             log(`SEMVER WARNING: Recommended action is a potentially breaking change`)
           }

@@ -46,7 +46,7 @@ tap.test('it generates a detail report with one vuln (review dev dep)', function
 tap.test('it generates a detail report with one vuln, no color', function (t) {
   return Report(fixtures['one-vuln'], {reporter: 'detail', withColor: false}).then((report) => {
     t.match(report.exitCode, 1)
-    t.match(report.report, /# Run `npm update tough-cookie --depth 6` to resolve 1 vulnerability/)
+    t.match(report.report, /# Run  npm update tough-cookie --depth 6  to resolve 1 vulnerability/)
   })
 })
 
