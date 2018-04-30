@@ -109,7 +109,7 @@ const report = function (data, options) {
             const table = new Table(tableOptions)
 
             table.push(
-              {[Utils.severityLabel(advisory.severity)]: advisory.title},
+              {[Utils.severityLabel(advisory.severity, config.withColor)]: advisory.title},
               {'Package': advisory.module_name},
               {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
               {'Path': `${resolution.path.split('>').join(' > ')}`},
