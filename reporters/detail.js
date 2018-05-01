@@ -89,7 +89,7 @@ const report = function (data, options) {
         if (action.action === 'update' || action.action === 'install') {
           const recommendation = getRecommendation(action, config)
           const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
-          log(`\n\n# Run ${Utils.color(' ' + recommendation.cmd + ' ', 'inverse', config.withColor)} to resolve ${action.resolves.length} ${label}`)
+          log(`# Run ${Utils.color(' ' + recommendation.cmd + ' ', 'inverse', config.withColor)} to resolve ${action.resolves.length} ${label}`)
           if (recommendation.isBreaking) {
             log(`SEMVER WARNING: Recommended action is a potentially breaking change`)
           }
@@ -113,7 +113,7 @@ const report = function (data, options) {
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
 
-            log(table.toString())
+            log(table.toString() + '\n\n')
           })
         }
         if (action.action === 'review') {
@@ -130,7 +130,7 @@ const report = function (data, options) {
               vAlign: 'center',
               hAlign: 'center'
             }])
-            log('\n\n')
+
             log(table.toString())
           }
           reviewFlag = true
