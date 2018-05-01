@@ -109,10 +109,10 @@ const report = function (data, options) {
             const table = new Table(tableOptions)
 
             table.push(
-              {[Utils.severityLabel(advisory.severity, config.withColor)]: advisory.title},
+              {[Utils.severityLabel(advisory.severity, config.withColor, true)]: Utils.color(advisory.title, 'bold', config.withColor)},
               {'Package': advisory.module_name},
               {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
-              {'Path': `${resolution.path.split('>').join(' > ')}`},
+              {'Path': `${resolution.path.split('>').join(Utils.color(' > ', 'grey', config.withColor))}`},
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
 
@@ -151,11 +151,11 @@ const report = function (data, options) {
             const patchedIn = advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions
 
             table.push(
-              {[Utils.severityLabel(advisory.severity, config.withColor)]: advisory.title},
+              {[Utils.severityLabel(advisory.severity, config.withColor, true)]: Utils.color(advisory.title, 'bold', config.withColor)},
               {'Package': advisory.module_name},
               {'Patched in': patchedIn},
               {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
-              {'Path': `${resolution.path.split('>').join(' > ')}`},
+              {'Path': `${resolution.path.split('>').join(Utils.color(' > ', 'grey', config.withColor))}`},
               {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
             )
             log(table.toString())

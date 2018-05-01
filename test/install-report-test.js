@@ -30,7 +30,7 @@ tap.test('it generates an install report with one vuln', function (t) {
 tap.test('it generates an install report with more than one vuln', function (t) {
   return Report(fixtures['some-vulns']).then((report) => {
     t.match(report.report, /12 vulnerabilities found \[918 packages audited\]/)
-    t.match(report.report, /Severity: 9 low \| 3 .*high.*/)
+    t.match(report.report, /Severity: 9 Low \| 3 .*High.*/)
     t.match(report.exitCode, 1)
   })
 })
