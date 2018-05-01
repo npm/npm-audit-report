@@ -80,10 +80,7 @@ const report = function (data, options) {
   const actions = function (data, config) {
     reportTitle()
 
-    if (Object.keys(data.advisories).length === 0) {
-      // log(`${Utils.color('[+]', 'green', config.withColor)} no known vulnerabilities found [${data.metadata.totalDependencies} packages audited]`)
-
-    } else {
+    if (Object.keys(data.advisories).length !== 0) {
       // vulns found display a report.
 
       let reviewFlag = false
