@@ -36,5 +36,10 @@
   "bugs": {
     "url": "https://github.com/npm/npm-audit-report/issues"
   },
-  "homepage": "https://github.com/npm/npm-audit-report#readme"
+  "homepage": "https://github.com/npm/npm-audit-report#readme",
+  "files": [
+    "index.js",
+    "lib",
+    "reporters"
+  ]
 }
