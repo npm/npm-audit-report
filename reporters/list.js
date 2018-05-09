@@ -31,7 +31,6 @@ const report = function (data, options) {
   let exit = 0
 
   const actions = function (data, config) {
-
     const tableOptions = {
       colWidths: [78]
     }
@@ -48,7 +47,6 @@ const report = function (data, options) {
     let reviewOutput = ''
 
     if (Object.keys(data.advisories).length !== 0) {
-
       // Create accumulating table for install/update recommendations
       const installUpdateTableOptions = {
         head: ['Level', 'Severity', 'Package', 'Recommendation', 'More info', 'Notes'],
@@ -91,7 +89,6 @@ const report = function (data, options) {
         let l = {}
         // Start with install/update actions
         if (action.action === 'update' || action.action === 'install') {
-
           // Shows title once
           if (!installUpdateHeader) {
             const tableOptions = {
@@ -117,14 +114,13 @@ const report = function (data, options) {
           }
           l.notes = recommendation.isBreaking ? '*' : ''
 
-          if (action.resolves.length > 0) {
-            // TODO: Verify: The advisory seems to repeat and be the same for all the 'resolves'. Is it true?
-            const advisory = data.advisories[action.resolves[0].id]
-            l.sevLevel = Utils.severityLabel(advisory.severity, config.withColor)
-            l.severity = Utils.color(advisory.title, 'bold', config.withColor)
-            l.package = advisory.module_name
-            l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
-          }
+          // TODO: Verify: The advisory seems to repeat and be the same for all the 'resolves'. Is it true?
+          const advisory = data.advisories[action.resolves[0].id]
+          l.sevLevel = Utils.severityLabel(advisory.severity, config.withColor)
+          l.severity = Utils.color(advisory.title, 'bold', config.withColor)
+          l.package = advisory.module_name
+          l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
+
           installUpdateTable.push([l.sevLevel, l.severity, l.package, l.recommendation, l.moreInfo, l.notes])
         }
 
@@ -155,7 +151,6 @@ const report = function (data, options) {
             l.patchedIn = advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions
 
             reviewTable.push([l.sevLevel, l.severity, l.package, l.patchedIn, l.moreInfo])
-
           }) // forEach resolves
         } // is review
       }) // forEach actions
