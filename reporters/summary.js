@@ -83,7 +83,6 @@ const report = function (data, options) {
     if (Object.keys(data.advisories).length !== 0) {
       // vulns found display a report.
 
-      let reviewFlag = false
       let reviewCount = 0
 
       data.actions.forEach((action) => {
@@ -115,8 +114,7 @@ const report = function (data, options) {
           const severityString = sev.map((value) => {
             return `${value[1]} ${Utils.severityLabel(value[0], false)}`
           }).join(' | ')
-  
-          // log(`# To resolve ${count} ${label}`)
+
           log(`# Run ${Utils.color(' ' + recommendation.cmd + ' ', 'inverse', config.withColor)} to resolve ${severityString} ${label}`)
         }
         if (action.action === 'review') {

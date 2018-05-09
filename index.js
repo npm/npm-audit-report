@@ -5,7 +5,7 @@ const reporters = {
   detail: require('./reporters/detail'),
   json: require('./reporters/json'),
   quiet: require('./reporters/quiet'),
-  summary: require('./reporters/summary'),
+  summary: require('./reporters/summary')
 }
 
 const report = function (data, options) {
