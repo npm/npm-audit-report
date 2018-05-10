@@ -34,13 +34,6 @@ tap.test('recommend `npm audit fix` when install actions present', t => {
   })
 })
 
-tap.test('recommend `npm audit` when all actions require human review', t => {
-  return Report(fixtures['one-vuln-dev-review']).then((report) => {
-    t.match(report.report, /run `npm audit`/)
-    t.match(report.exitCode, 1)
-  })
-})
-
 tap.test('it generates an install report with multiple vulns of one type', function (t) {
   return Report(fixtures['some-same-type'], {withColor: false}).then((report) => {
     t.match(report.report, /found 12 high severity vulnerabilities/)
