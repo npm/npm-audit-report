@@ -31,7 +31,7 @@ tap.test('it generates a detail report with one vuln (install action)', function
 tap.test('it generates a detail report with one vuln (install dev dep)', function (t) {
   return Report(fixtures['one-vuln-dev'], {reporter: 'detail'}).then((report) => {
     t.match(report.exitCode, 1)
-    t.match(report.report, /npm install --dev knex@3.0.0/)
+    t.match(report.report, /npm install --save-dev knex@3.0.0/)
   })
 })
 

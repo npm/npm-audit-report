@@ -176,7 +176,7 @@ const getRecommendation = function (action, config) {
     const isDev = action.resolves[0].dev
 
     return {
-      cmd: `npm install ${isDev ? '--dev ' : ''}${action.module}@${action.target}`,
+      cmd: `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`,
       isBreaking: action.isMajor
     }
   } else {
