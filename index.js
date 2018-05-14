@@ -2,7 +2,7 @@
 
 const reporters = {
   install: require('./reporters/install'),
-  list: require('./reporters/list'),
+  parseable: require('./reporters/parseable'),
   detail: require('./reporters/detail'),
   json: require('./reporters/json'),
   quiet: require('./reporters/quiet')
