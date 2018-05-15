@@ -15,7 +15,7 @@ const report = function (data, options) {
   }
 
   const config = Object.assign({}, defaults, options)
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const result = reporters[config.reporter](data, config)
     return resolve(result)
   })
