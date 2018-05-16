@@ -50,7 +50,7 @@ const report = function (data, options) {
       const vulnLabel = Utils.severityLabel(sev[0][0], config.withColor).toLowerCase()
       log(`${vulnCount} ${vulnLabel} severity vulnerabilit${vulnCount === 1 ? 'y' : 'ies'}`)
     }
-    log('  run `npm audit fix` to install recommended updates')
+    log('  run `npm audit fix` to fix them, or `npm audit` for details')
     return {
       report: output.trim(),
       exitCode: 1
