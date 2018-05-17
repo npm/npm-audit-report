@@ -39,7 +39,7 @@ tap.test('it adds a message if a dep isMajor (one vuln)', function (t) {
 tap.test('it adds a message if a dep isMajor (multiple vulns)', function (t) {
   return Report(fixtures['some-vulns-ismajor'], {reporter: 'detail', withColor: false}).then((report) => {
     t.equal(report.exitCode, 1, 'non-zero exit code')
-    t.match(report.report, /2 vulnerabilities require semver-major dependency updates/, 'reports multiple semver-major bumps')
+    t.match(report.report, /6 vulnerabilities require semver-major dependency updates/, 'reports multiple semver-major bumps')
   })
 })
 

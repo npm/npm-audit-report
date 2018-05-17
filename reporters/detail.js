@@ -55,13 +55,13 @@ const report = function (data, options) {
     if (total) {
       const counts = data.actions.reduce((acc, {action, isMajor, resolves}) => {
         if (action === 'update' || (action === 'install' && !isMajor)) {
-          resolves.forEach(({id}) => acc.advisories.add(id))
+          resolves.forEach(({id, path}) => acc.advisories.add(`${id}::${path}`))
         }
         if (isMajor) {
-          resolves.forEach(({id}) => acc.major.add(id))
+          resolves.forEach(({id, path}) => acc.major.add(`${id}::${path}`))
         }
         if (action === 'review') {
-          resolves.forEach(({id}) => acc.review.add(id))
+          resolves.forEach(({id, path}) => acc.review.add(`${id}::${path}`))
         }
         return acc
       }, {advisories: new Set(), major: new Set(), review: new Set()})
