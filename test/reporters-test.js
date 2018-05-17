@@ -12,13 +12,13 @@ tap.test('total vuln count is 0 with no vulns', function (t) {
   })
 })
 
-tap.test('total vuln count is 0 with no vulns', function (t) {
+tap.test('total vuln count is calculated with some vulns', function (t) {
   return Report(fixtures['some-vulns'], {reporter: 'json'}).then((reportRaw) => {
     t.equal(totalVulnCount(JSON.parse(reportRaw.report).metadata.vulnerabilities), 12)
   })
 })
 
-tap.test('total vuln count is 0 with no vulns', function (t) {
+tap.test('total vuln count is calculated with all severity vulns', function (t) {
   return Report(fixtures['all-severity-vulns'], {reporter: 'json'}).then((reportRaw) => {
     t.equal(totalVulnCount(JSON.parse(reportRaw.report).metadata.vulnerabilities), 31)
   })
