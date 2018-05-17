@@ -31,7 +31,7 @@ Report(response, options, (result) => {
 ## options
 
 reporter: 
-  specify which output format you want to use (install, detail, json)
+  specify which output format you want to use (install, list, detail, json)
 
 withColor: 
   true || false indicates if some report elements should use colors or not
