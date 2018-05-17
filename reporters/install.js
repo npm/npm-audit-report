@@ -1,6 +1,7 @@
 'use strict'
 
 const Utils = require('../lib/utils')
+const reporterUtils = require('../lib/reporters')
 
 const report = function (data, options) {
   const defaults = {
@@ -28,17 +29,8 @@ const report = function (data, options) {
       exitCode: 0
     }
   } else {
-    let total = 0
-    const sev = []
-
-    const keys = Object.keys(data.metadata.vulnerabilities)
-    for (let key of keys) {
-      const value = data.metadata.vulnerabilities[key]
-      total = total + value
-      if (value > 0) {
-        sev.push([key, value])
-      }
-    }
+    const total = reporterUtils.totalVulnCount(data.metadata.vulnerabilities)
+    const sev = reporterUtils.severities(data.metadata.vulnerabilities)
 
     if (sev.length > 1) {
       const severities = sev.map((value) => {

@@ -1,17 +1,13 @@
 'use strict'
 
-const report = function (data, options) {
-  let total = 0
+const reporterUtils = require('../lib/reporters')
 
-  const keys = Object.keys(data.metadata.vulnerabilities)
-  for (let key of keys) {
-    const value = data.metadata.vulnerabilities[key]
-    total = total + value
-  }
+const report = function (data) {
+  const totalVulnCount = reporterUtils.totalVulnCount(data.metadata.vulnerabilities)
 
   return {
     report: '',
-    exitCode: total === 0 ? 0 : 1
+    exitCode: totalVulnCount === 0 ? 0 : 1
   }
 }
 

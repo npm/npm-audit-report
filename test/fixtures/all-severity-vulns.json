@@ -296,11 +296,11 @@
   "muted": [],
   "metadata": {
     "vulnerabilities": {
-      "info": 0,
-      "low": 9,
-      "moderate": 0,
-      "high": 3,
-      "critical": 0
+      "info": 16,
+      "low": 8,
+      "moderate": 4,
+      "high": 2,
+      "critical": 1
     },
     "dependencies": 375,
     "devDependencies": 466,

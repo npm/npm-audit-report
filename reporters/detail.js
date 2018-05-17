@@ -2,6 +2,7 @@
 
 const Table = require('cli-table2')
 const Utils = require('../lib/utils')
+const reporterUtils = require('../lib/reporters')
 
 const report = function (data, options) {
   const defaults = {
@@ -36,17 +37,9 @@ const report = function (data, options) {
   }
 
   const footer = function (metadata) {
-    let total = 0
-    const sev = []
+    const total = reporterUtils.totalVulnCount(metadata.vulnerabilities)
+    const sev = reporterUtils.severities(metadata.vulnerabilities)
 
-    const keys = Object.keys(metadata.vulnerabilities)
-    for (let key of keys) {
-      const value = metadata.vulnerabilities[key]
-      total = total + value
-      if (value > 0) {
-        sev.push([key, value])
-      }
-    }
     const severities = sev.map((value) => {
       return `${value[1]} ${Utils.severityLabel(value[0], false)}`
     }).join(' | ')
