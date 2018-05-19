@@ -9,7 +9,7 @@ const fixtures = Keyfob.load({ path: 'test/fixtures', fn: require })
 tap.test('it generates a detail report with no vulns', function (t) {
   return Report(fixtures['no-vulns'], {reporter: 'parseable'}).then((report) => {
     t.match(report.exitCode, 0)
-    t.equal(report.report.length,0)
+    t.equal(report.report.length, 0)
   })
 })
 
