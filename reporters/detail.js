@@ -3,7 +3,6 @@
 const summary = require('./install.js').summary
 const Table = require('cli-table2')
 const Utils = require('../lib/utils')
-const reporterUtils = require('../lib/reporters')
 
 const report = function (data, options) {
   const defaults = {
@@ -38,7 +37,7 @@ const report = function (data, options) {
   }
 
   const footer = function (data) {
-    const total = reporterUtils.totalVulnCount(data.metadata.vulnerabilities)
+    const total = Utils.totalVulnCount(data.metadata.vulnerabilities)
 
     if (total > 0) {
       exit = 1

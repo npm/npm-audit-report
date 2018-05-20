@@ -1,9 +1,9 @@
 'use strict'
 
-const reporterUtils = require('../lib/reporters')
+const Utils = require('../lib/utils')
 
 const report = function (data) {
-  const totalVulnCount = reporterUtils.totalVulnCount(data.metadata.vulnerabilities)
+  const totalVulnCount = Utils.totalVulnCount(data.metadata.vulnerabilities)
 
   return {
     report: '',

@@ -1,7 +1,6 @@
 'use strict'
 
 const Utils = require('../lib/utils')
-const reporterUtils = require('../lib/reporters')
 
 module.exports = report
 function report (data, options) {
@@ -44,8 +43,8 @@ function summary (data, options) {
     log(`${green('0')} vulnerabilities`)
     return output
   } else {
-    const total = reporterUtils.totalVulnCount(data.metadata.vulnerabilities)
-    const sev = reporterUtils.severities(data.metadata.vulnerabilities)
+    const total = Utils.totalVulnCount(data.metadata.vulnerabilities)
+    const sev = Utils.severities(data.metadata.vulnerabilities)
 
     if (sev.length > 1) {
       const severities = sev.map((value) => {
