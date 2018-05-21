@@ -1,7 +1,5 @@
 'use strict'
 
-const Utils = require('../lib/utils')
-
 const report = function (data, options) {
   const defaults = {
     severityThreshold: 'info'
@@ -43,15 +41,14 @@ const report = function (data, options) {
           action.resolves.forEach((resolution) => {
             const advisory = data.advisories[resolution.id]
 
-            l.sevLevel = Utils.severityLabel(advisory.severity, config.withColor)
+            l.sevLevel = advisory.severity
             l.severity = advisory.title
             l.package = advisory.module_name
             l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
             l.patchedIn = advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions
             l.path = resolution.path
 
-            accumulator[advisory.severity] += [action.action, l.package, l.sevLevel, l.patchedIn, l.severity, l.moreInfo, l.path]
-              .join('\t') + '\n'
+            accumulator[advisory.severity] += [action.action, l.package, l.sevLevel, l.patchedIn, l.severity, l.moreInfo, l.path].join('\t') + '\n'
           }) // forEach resolves
         } // is review
       }) // forEach actions
@@ -85,7 +82,7 @@ const getRecommendation = function (action, config) {
     const isDev = action.resolves[0].dev
 
     return {
-      cmd: `npm install ${isDev ? '--dev ' : ''}${action.module}@${action.target}`,
+      cmd: `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`,
       isBreaking: action.isMajor
     }
   } else {
