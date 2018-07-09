@@ -46,3 +46,11 @@ tap.test('it generates an install report with more than one vuln', function (t) 
     t.match(report.exitCode, 1)
   })
 })
+
+tap.test('it generates an install report with vulns of all severities', function (t) {
+  return Report(fixtures['all-severity-vulns']).then((report) => {
+    t.match(report.report, /^found .*31.* vulnerabilities/)
+    t.match(report.report, /16 .*info, 8 .*low.*, 4 .*moderate.*, 2 .*high.*, 1 .*critical.*/)
+    t.match(report.exitCode, 1)
+  })
+})
