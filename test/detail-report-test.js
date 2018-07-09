@@ -2,9 +2,7 @@
 
 const tap = require('tap')
 const Report = require('../')
-const Keyfob = require('keyfob')
-
-const fixtures = Keyfob.load({ path: 'test/fixtures', fn: require })
+const fixtures = require('./lib/test-fixtures')
 
 tap.test('it generates a detail report with no vulns', function (t) {
   return Report(fixtures['no-vulns'], {reporter: 'detail', withColor: false}).then((report) => {
@@ -78,6 +76,17 @@ tap.test('it generates a detail report with some vulns', function (t) {
     t.match(report.report, /Manual Review/, 'expects manual review')
     t.match(report.report, /found 12 vulnerabilities/, 'reports vuln count')
     t.match(report.report, /9 low, 3 high/, 'severity breakdown reported')
+    t.match(report.report, /Denial of Service/, 'mentions one vuln title')
+    t.match(report.report, /Cryptographically Weak PRNG/, 'mentions the other vuln title')
+  })
+})
+
+tap.test('it generates a detail report with vulns of all severities', function (t) {
+  return Report(fixtures['all-severity-vulns'], {reporter: 'detail', withColor: false}).then((report) => {
+    t.equal(report.exitCode, 1, 'non-zero exit code')
+    t.match(report.report, /Manual Review/, 'expects manual review')
+    t.match(report.report, /found 31 vulnerabilities/, 'reports vuln count')
+    t.match(report.report, /16 info, 8 low, 4 moderate, 2 high, 1 critical/, 'severity breakdown reported')
     t.match(report.report, /Denial of Service/, 'mentions one vuln title')
     t.match(report.report, /Cryptographically Weak PRNG/, 'mentions the other vuln title')
   })

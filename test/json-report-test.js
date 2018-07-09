@@ -2,9 +2,7 @@
 
 const tap = require('tap')
 const Report = require('../')
-const Keyfob = require('keyfob')
-
-const fixtures = Keyfob.load({ path: 'test/fixtures', fn: require })
+const fixtures = require('./lib/test-fixtures')
 
 tap.test('it generates a json report', function (t) {
   return Report(fixtures['no-vulns'], {reporter: 'json'}).then((report) => {

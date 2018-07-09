@@ -2,3 +2,5 @@ node_modules
 .vscode
 .nyc_output
 .DS_Store
+
+\.idea/

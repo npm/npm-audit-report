@@ -37,4 +37,4 @@ Report(response, options, (result) => {
 | :---          | :---                                 | :---      |:--- |
 | reporter      | `install`, `detail`, `json`, `quiet` | `install` | specify which output format you want to use |
 | withColor     | `true`, `false`                      | `true`    | indicates if some report elements should use colors |
-| withUnicode   | `true`, `false`                      | `true`    | indicates if unicode characters should be used |
+| withUnicode   | `true`, `false`                      | `true`    | indicates if unicode characters should be used|
