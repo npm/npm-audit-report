@@ -30,13 +30,13 @@ Report(response, options, (result) => {
 
 ## options
 
-reporter: 
-  specify which output format you want to use (install, detail, json)
+reporter:
+  specify which output format you want to use (install, parseable, detail, json)
 
-withColor: 
+withColor:
   true || false indicates if some report elements should use colors or not
 
-withUnicode: 
+withUnicode:
   true || false indicates if unicode characters should be used or not.
 
 
