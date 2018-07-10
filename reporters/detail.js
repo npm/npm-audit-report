@@ -1,7 +1,7 @@
 'use strict'
 
 const summary = require('./install.js').summary
-const Table = require('cli-table2')
+const Table = require('cli-table3')
 const Utils = require('../lib/utils')
 
 const report = function (data, options) {
