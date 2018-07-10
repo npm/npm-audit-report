@@ -1,5 +1,7 @@
 'use strict'
 
+const Utils = require('../lib/utils')
+
 const report = function (data, options) {
   const defaults = {
     severityThreshold: 'info'
@@ -21,7 +23,7 @@ const report = function (data, options) {
         let l = {}
         // Start with install/update actions
         if (action.action === 'update' || action.action === 'install') {
-          const recommendation = getRecommendation(action, config)
+          const recommendation = Utils.getRecommendation(action, config)
           l.recommendation = recommendation.cmd
           l.breaking = recommendation.isBreaking ? 'Y' : 'N'
 
@@ -74,22 +76,6 @@ const report = function (data, options) {
   return {
     report: actions(data, config),
     exitCode: exit
-  }
-}
-
-const getRecommendation = function (action, config) {
-  if (action.action === 'install') {
-    const isDev = action.resolves[0].dev
-
-    return {
-      cmd: `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`,
-      isBreaking: action.isMajor
-    }
-  } else {
-    return {
-      cmd: `npm update ${action.module} --depth ${action.depth}`,
-      isBreaking: false
-    }
   }
 }
 

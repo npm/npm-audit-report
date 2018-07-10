@@ -1,6 +1,5 @@
 'use strict'
 
-const summary = require('./install.js').summary
 const Table = require('cli-table3')
 const Utils = require('../lib/utils')
 
@@ -37,13 +36,11 @@ const report = function (data, options) {
   }
 
   const footer = function (data) {
-    const total = Utils.totalVulnCount(data.metadata.vulnerabilities)
+    const summary = Utils.vulnSummary(data.metadata.vulnerabilities, config)
 
-    if (total > 0) {
+    log(`${summary.msg} in ${data.metadata.totalDependencies} scanned package${data.metadata.totalDependencies === 1 ? '' : 's'}`)
+    if (summary.total) {
       exit = 1
-    }
-    log(`${summary(data, config)} in ${data.metadata.totalDependencies} scanned package${data.metadata.totalDependencies === 1 ? '' : 's'}`)
-    if (total) {
       const counts = data.actions.reduce((acc, {action, isMajor, resolves}) => {
         if (action === 'update' || (action === 'install' && !isMajor)) {
           resolves.forEach(({id, path}) => acc.advisories.add(`${id}::${path}`))
@@ -94,7 +91,7 @@ const report = function (data, options) {
 
       data.actions.forEach((action) => {
         if (action.action === 'update' || action.action === 'install') {
-          const recommendation = getRecommendation(action, config)
+          const recommendation = Utils.getRecommendation(action, config)
           const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
           log(`# Run ${Utils.color(' ' + recommendation.cmd + ' ', 'inverse', config.withColor)} to resolve ${action.resolves.length} ${label}`)
           if (recommendation.isBreaking) {
@@ -175,22 +172,6 @@ const report = function (data, options) {
   return {
     report: output.trim(),
     exitCode: exit
-  }
-}
-
-const getRecommendation = function (action, config) {
-  if (action.action === 'install') {
-    const isDev = action.resolves[0].dev
-
-    return {
-      cmd: `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`,
-      isBreaking: action.isMajor
-    }
-  } else {
-    return {
-      cmd: `npm update ${action.module} --depth ${action.depth}`,
-      isBreaking: false
-    }
   }
 }
 
