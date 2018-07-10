@@ -9,7 +9,7 @@ tap.test('a test should be able to modify a fixture', function (t) {
   delete fixture.muted
   fixture.metadata.vulnerabilities.high = 0
   t.equal(fixture.actions.length, 0)
-  t.is('muted' in fixture, false)
+  t.notOk('muted' in fixture)
   t.same(fixture.metadata.vulnerabilities, {
     info: 0,
     low: 0,
@@ -23,7 +23,7 @@ tap.test('a test should be able to modify a fixture', function (t) {
 tap.test('a test should not be able to see how a previous test modified a fixture', function (t) {
   const fixture = fixtures['one-vuln']
   t.equal(fixture.actions.length, 1)
-  t.is('muted' in fixture, true)
+  t.ok('muted' in fixture)
   t.same(fixture.metadata.vulnerabilities, {
     info: 0,
     low: 0,
