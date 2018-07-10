@@ -6,7 +6,7 @@ const fixtures = require('./lib/test-fixtures')
 
 tap.test('it generates a detail report with no vulns', function (t) {
   return Report(fixtures['no-vulns'], {reporter: 'detail', withColor: false}).then((report) => {
-    t.match(report.exitCode, 0, 'successful exit code')
+    t.equal(report.exitCode, 0, 'successful exit code')
     t.match(report.report, /found 0 vulnerabilities/, 'no vulns reported')
     t.match(report.report, /918 scanned packages/, 'reports scanned count')
   })

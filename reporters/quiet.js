@@ -3,11 +3,11 @@
 const Utils = require('../lib/utils')
 
 const report = function (data) {
-  const totalVulnCount = Utils.vulnTotal(data.metadata.vulnerabilities)
+  const vulnTotal = Utils.vulnTotal(data.metadata.vulnerabilities)
 
   return {
     report: '',
-    exitCode: totalVulnCount === 0 ? 0 : 1
+    exitCode: vulnTotal ? 1 : 0
   }
 }
 

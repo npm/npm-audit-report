@@ -9,7 +9,7 @@ const report = function (data, options) {
 
   const config = Object.assign({}, defaults, options)
 
-  let exit = 0
+  const vulnTotal = Utils.vulnTotal(data.metadata.vulnerabilities)
 
   const actions = function (data, config) {
     let accumulator = {
@@ -18,64 +18,36 @@ const report = function (data, options) {
       low: ''
     }
 
-    if (Object.keys(data.advisories).length !== 0) {
-      data.actions.forEach((action) => {
-        let l = {}
-        // Start with install/update actions
-        if (action.action === 'update' || action.action === 'install') {
-          const recommendation = Utils.getRecommendation(action, config)
-          l.recommendation = recommendation.cmd
-          l.breaking = recommendation.isBreaking ? 'Y' : 'N'
+    data.actions.forEach((action) => {
+      const recommendation = action.action === 'update' || action.action === 'install' ? Utils.getRecommendation(action, config) : null
+      if (recommendation) {
+        recommendation.breaking = recommendation.isBreaking ? 'Y' : 'N'
+      }
 
-          // TODO: Verify: The advisory seems to repeat and be the same for all the 'resolves'. Is it true?
-          const advisory = data.advisories[action.resolves[0].id]
-          l.sevLevel = advisory.severity
-          l.severity = advisory.title
-          l.package = advisory.module_name
-          l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
-          l.path = action.resolves[0].path
+      action.resolves.forEach((resolution) => {
+        const advisory = data.advisories[resolution.id]
 
-          accumulator[advisory.severity] += [action.action, l.package, l.sevLevel, l.recommendation, l.severity, l.moreInfo, l.path, l.breaking]
-            .join('\t') + '\n'
+        const line = [action.action, advisory.module_name, advisory.severity]
+
+        if (recommendation) {
+          line.push(recommendation.cmd)
+        } else {
+          line.push(advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions)
+        }
+        line.push(advisory.title, 'https://nodesecurity.io/advisories/' + advisory.id, resolution.path)
+        if (recommendation) {
+          line.push(recommendation.breaking)
         }
 
-        if (action.action === 'review') {
-          action.resolves.forEach((resolution) => {
-            const advisory = data.advisories[resolution.id]
-
-            l.sevLevel = advisory.severity
-            l.severity = advisory.title
-            l.package = advisory.module_name
-            l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
-            l.patchedIn = advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions
-            l.path = resolution.path
-
-            accumulator[advisory.severity] += [action.action, l.package, l.sevLevel, l.patchedIn, l.severity, l.moreInfo, l.path].join('\t') + '\n'
-          }) // forEach resolves
-        } // is review
-      }) // forEach actions
-    }
+        accumulator[advisory.severity] += line.join('\t') + '\n'
+      })
+    })
     return accumulator['high'] + accumulator['moderate'] + accumulator['low']
   }
 
-  const exitCode = function (metadata) {
-    let total = 0
-    const keys = Object.keys(metadata.vulnerabilities)
-    for (let key of keys) {
-      const value = metadata.vulnerabilities[key]
-      total = total + value
-    }
-
-    if (total > 0) {
-      exit = 1
-    }
-  }
-
-  exitCode(data.metadata)
-
   return {
     report: actions(data, config),
-    exitCode: exit
+    exitCode: vulnTotal ? 1 : 0
   }
 }
 
