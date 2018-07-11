@@ -2,7 +2,8 @@
 
 const Utils = require('../lib/utils')
 
-const report = function (data) {
+const report = function (data, config) {
+  Utils.vulnFilter(data, config)
   const vulnTotal = Utils.vulnTotal(data.metadata.vulnerabilities)
 
   return {

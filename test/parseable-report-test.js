@@ -82,3 +82,10 @@ tap.test('it generates a parseable report with review vulns', function (t) {
     t.match(report.report, /review\t/, 'expects manual review')
   })
 })
+
+tap.test('it generates a parseable report with no vulns when a dev dep has a vuln and dev deps are excluded', function (t) {
+  return Report(fixtures['one-vuln-dev'], {reporter: 'parseable', excludeDev: true}).then((report) => {
+    t.equal(report.exitCode, 0, 'successful exit code')
+    t.equal(report.report.length, 0, 'no vulns reported')
+  })
+})

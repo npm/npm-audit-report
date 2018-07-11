@@ -34,6 +34,7 @@ const report = function (data, options) {
     output.push(value)
   }
 
+  Utils.vulnFilter(data, config)
   const summary = Utils.vulnSummary(data.metadata.vulnerabilities, config)
 
   const header = function () {

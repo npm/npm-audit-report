@@ -100,3 +100,11 @@ tap.test('it generates a detail report with review vulns, no unicode', function 
     t.match(report.report, /1 low, 1 moderate, 1 critical/, 'severity breakdown reported')
   })
 })
+
+tap.test('it generates a detail report with no vulns when a dev dep has a vuln and dev deps are excluded', function (t) {
+  return Report(fixtures['one-vuln-dev'], {reporter: 'detail', excludeDev: true, withColor: false}).then((report) => {
+    t.equal(report.exitCode, 0, 'successful exit code')
+    t.match(report.report, /found 0 vulnerabilities/, 'no vulns reported')
+    t.match(report.report, /918 scanned packages/, 'reports scanned count')
+  })
+})

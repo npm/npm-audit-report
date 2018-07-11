@@ -9,6 +9,7 @@ const report = function (data, options) {
 
   const config = Object.assign({}, defaults, options)
 
+  Utils.vulnFilter(data, config)
   const vulnTotal = Utils.vulnTotal(data.metadata.vulnerabilities)
 
   const actions = function (data, config) {
@@ -46,7 +47,7 @@ const report = function (data, options) {
   }
 
   return {
-    report: actions(data, config),
+    report: vulnTotal ? actions(data, config) : '',
     exitCode: vulnTotal ? 1 : 0
   }
 }
