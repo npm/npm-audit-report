@@ -24,3 +24,17 @@ tap.test('it generates a quiet report with no vulns when a dev dep has a vuln an
     t.match(report.exitCode, 0)
   })
 })
+
+tap.test('it generates a quiet report with fewer vulns when a higher severity threshold is set', function (t) {
+  return Report(fixtures['all-severity-vulns'], {reporter: 'quiet', severityThreshold: 'high'}).then((report) => {
+    t.equal(report.report, '')
+    t.equal(report.exitCode, 1)
+  })
+})
+
+tap.test('it generates a quiet report with no vulns when a severity threshold higher than all vulns is set', function (t) {
+  return Report(fixtures['some-vulns'], {reporter: 'quiet', severityThreshold: 'critical'}).then((report) => {
+    t.equal(report.report, '')
+    t.equal(report.exitCode, 0)
+  })
+})

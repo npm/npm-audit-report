@@ -89,3 +89,18 @@ tap.test('it generates a parseable report with no vulns when a dev dep has a vul
     t.equal(report.report.length, 0, 'no vulns reported')
   })
 })
+
+tap.test('it generates a parseable report with fewer vulns when a higher severity threshold is set', function (t) {
+  return Report(fixtures['all-severity-vulns'], {reporter: 'parseable', severityThreshold: 'high'}).then((report) => {
+    t.equal(report.exitCode, 1, 'non-zero exit code')
+    t.match(report.report, /\thigh/)
+    t.match(report.report, /\tDenial of Service/)
+  })
+})
+
+tap.test('it generates a parseable report with no vulns when a severity threshold higher than all vulns is set', function (t) {
+  return Report(fixtures['some-vulns'], {reporter: 'parseable', severityThreshold: 'critical'}).then((report) => {
+    t.equal(report.exitCode, 0, 'successful exit code')
+    t.equal(report.report.length, 0, 'no vulns reported')
+  })
+})

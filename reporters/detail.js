@@ -4,9 +4,7 @@ const Table = require('cli-table3')
 const Utils = require('../lib/utils')
 
 const report = function (data, options) {
-  const defaults = {
-    severityThreshold: 'info'
-  }
+  const defaults = {}
 
   const blankChars = {
     'top': ' ',

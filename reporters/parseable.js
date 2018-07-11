@@ -3,9 +3,7 @@
 const Utils = require('../lib/utils')
 
 const report = function (data, options) {
-  const defaults = {
-    severityThreshold: 'info'
-  }
+  const defaults = {}
 
   const config = Object.assign({}, defaults, options)
 

@@ -108,3 +108,19 @@ tap.test('it generates a detail report with no vulns when a dev dep has a vuln a
     t.match(report.report, /918 scanned packages/, 'reports scanned count')
   })
 })
+
+tap.test('it generates a detail report with fewer vulns when a severity threshold higher than some vulns is set', function (t) {
+  return Report(fixtures['all-severity-vulns'], {reporter: 'detail', severityThreshold: 'high', withColor: false}).then((report) => {
+    t.equal(report.exitCode, 1, 'non-zero exit code')
+    t.match(report.report, /found 3 vulnerabilities/, 'reports vuln count')
+    t.match(report.report, /2 high, 1 critical/, 'severity breakdown reported')
+  })
+})
+
+tap.test('it generates a detail report with no vulns when a severity threshold higher than all vulns is set', function (t) {
+  return Report(fixtures['some-vulns'], {reporter: 'detail', severityThreshold: 'critical', withColor: false}).then((report) => {
+    t.match(report.exitCode, 0, 'successful exit code')
+    t.match(report.report, /found 0 vulnerabilities/, 'no vulns reported')
+    t.match(report.report, /918 scanned packages/, 'reports scanned count')
+  })
+})
