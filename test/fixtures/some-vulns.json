@@ -28,6 +28,12 @@
         },
         {
           "id": 534,
+          "path": "standard>eslint>debug",
+          "dev": true,
+          "optional": false
+        },
+        {
+          "id": 534,
           "path": "standard>eslint-plugin-import>debug",
           "dev": true,
           "optional": false
