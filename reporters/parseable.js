@@ -26,16 +26,18 @@ const report = function (data, options) {
           l.recommendation = recommendation.cmd
           l.breaking = recommendation.isBreaking ? 'Y' : 'N'
 
-          // TODO: Verify: The advisory seems to repeat and be the same for all the 'resolves'. Is it true?
-          const advisory = data.advisories[action.resolves[0].id]
-          l.sevLevel = advisory.severity
-          l.severity = advisory.title
-          l.package = advisory.module_name
-          l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
-          l.path = action.resolves[0].path
+          action.resolves.forEach((resolution) => {
+            const advisory = data.advisories[resolution.id]
 
-          accumulator[advisory.severity] += [action.action, l.package, l.sevLevel, l.recommendation, l.severity, l.moreInfo, l.path, l.breaking]
+            l.sevLevel = advisory.severity
+            l.severity = advisory.title
+            l.package = advisory.module_name
+            l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
+            l.path = resolution.path
+
+            accumulator[advisory.severity] += [action.action, l.package, l.sevLevel, l.recommendation, l.severity, l.moreInfo, l.path, l.breaking]
             .join('\t') + '\n'
+          }) // forEach resolves
         }
 
         if (action.action === 'review') {
