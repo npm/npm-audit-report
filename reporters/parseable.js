@@ -11,6 +11,7 @@ const report = function (data, options) {
 
   const actions = function (data, config) {
     let accumulator = {
+      critical: '',
       high: '',
       moderate: '',
       low: ''
@@ -53,7 +54,7 @@ const report = function (data, options) {
         } // is review
       }) // forEach actions
     }
-    return accumulator['high'] + accumulator['moderate'] + accumulator['low']
+    return accumulator['critical'] + accumulator['high'] + accumulator['moderate'] + accumulator['low']
   }
 
   const exitCode = function (metadata) {
