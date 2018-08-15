@@ -89,3 +89,11 @@ tap.test('it generates a parseable report with critical vulns', function (t) {
     t.match(report.report, /\tcritical/)
   })
 })
+
+tap.test('it generates a parseable report with multiple resolves on the same update/install action', function (t) {
+  return Report(fixtures['some-same-action'], {reporter: 'parseable'}).then((report) => {
+    t.equal(report.exitCode, 1, 'non-zero exit code')
+    t.match(report.report, /\tcritical/)
+    t.match(report.report, /\tlow/)
+  })
+})
