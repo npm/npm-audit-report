@@ -36,7 +36,7 @@ const report = function (data, options) {
             l.path = resolution.path
 
             accumulator[advisory.severity] += [action.action, l.package, l.sevLevel, l.recommendation, l.severity, l.moreInfo, l.path, l.breaking]
-            .join('\t') + '\n'
+              .join('\t') + '\n'
           }) // forEach resolves
         }
 
