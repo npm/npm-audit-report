@@ -54,3 +54,11 @@ tap.test('it generates an install report with vulns of all severities', function
     t.match(report.exitCode, 1)
   })
 })
+
+tap.test('it generates an install report a warning if advisories are not set', function (t) {
+  return Report(fixtures['missing-advisories-no-vulns'], {advisories: null}).then((report) => {
+    t.match(report.report, /.*WARN.* There was an error contacting the audit server/)
+    t.match(report.report, /found .*0.* vulnerabilities/)
+    t.match(report.exitCode, 0)
+  })
+})
