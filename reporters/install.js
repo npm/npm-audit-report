@@ -5,7 +5,8 @@ const Utils = require('../lib/utils')
 module.exports = report
 function report (data, options) {
   let msg = summary(data, options)
-  if (!Object.keys(data.advisories).length) {
+
+  if (!Object.keys(data.advisories || {}).length) {
     return {
       report: msg,
       exitCode: 0
@@ -29,6 +30,7 @@ function summary (data, options) {
 
   function clr (str, clr) { return Utils.color(str, clr, config.withColor) }
   function green (str) { return clr(str, 'brightGreen') }
+  function yellow (str) { return clr(str, 'brightYellow') }
   function red (str) { return clr(str, 'brightRed') }
 
   let output = ''
@@ -37,9 +39,13 @@ function summary (data, options) {
     output = output + value + '\n'
   }
 
+  if (!data.advisories) {
+    log(`${yellow('WARN')}: There was an error contacting the audit server`);
+  }
+
   output += 'found '
 
-  if (Object.keys(data.advisories).length === 0) {
+  if (Object.keys(data.advisories || {}).length === 0) {
     log(`${green('0')} vulnerabilities`)
     return output
   } else {
