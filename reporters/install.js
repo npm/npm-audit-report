@@ -40,7 +40,7 @@ function summary (data, options) {
   }
 
   if (!data.advisories) {
-    log(`${yellow('WARN')}: There was an error contacting the audit server`);
+    log(`${yellow('WARN')}: There was an error contacting the audit server`)
   }
 
   output += 'found '
