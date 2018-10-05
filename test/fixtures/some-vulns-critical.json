@@ -57,7 +57,7 @@
         "exploitability": 5,
         "affected_components": ""
       },
-      "url": "https://nodesecurity.io/advisories/146"
+      "url": "https://www.npmjs.com/advisories/146"
     }
   },
   "muted": [],
