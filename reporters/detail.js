@@ -117,7 +117,7 @@ const report = function (data, options) {
               {'Package': advisory.module_name},
               {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
               {'Path': `${resolution.path.split('>').join(Utils.color(' > ', 'grey', config.withColor))}`},
-              {'More info': `https://nodesecurity.io/advisories/${advisory.id}`}
+              {'More info': `https://www.npmjs.com/advisories/${advisory.id}`}
             )
 
             log(table.toString() + '\n\n')
