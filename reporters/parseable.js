@@ -32,7 +32,7 @@ const report = function (data, options) {
             l.sevLevel = advisory.severity
             l.severity = advisory.title
             l.package = advisory.module_name
-            l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
+            l.moreInfo = advisory.url || `https://www.npmjs.com/advisories/${advisory.id}`
             l.path = resolution.path
 
             accumulator[advisory.severity] += [action.action, l.package, l.sevLevel, l.recommendation, l.severity, l.moreInfo, l.path, l.breaking]
@@ -47,7 +47,7 @@ const report = function (data, options) {
             l.sevLevel = advisory.severity
             l.severity = advisory.title
             l.package = advisory.module_name
-            l.moreInfo = `https://nodesecurity.io/advisories/${advisory.id}`
+            l.moreInfo = advisory.url || `https://www.npmjs.com/advisories/${advisory.id}`
             l.patchedIn = advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions
             l.path = resolution.path
 
