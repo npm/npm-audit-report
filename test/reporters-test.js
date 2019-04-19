@@ -3,24 +3,25 @@
 const tap = require('tap')
 const Report = require('../')
 const Keyfob = require('keyfob')
-const {totalVulnCount, severities} = require('../lib/utils')
 const fixtures = Keyfob.load({path: 'test/fixtures', fn: require})
+
+const {vulnTotal, severities} = require('../lib/utils')
 
 tap.test('total vuln count is 0 with no vulns', function (t) {
   return Report(fixtures['no-vulns'], {reporter: 'json'}).then((reportRaw) => {
-    t.equal(totalVulnCount(JSON.parse(reportRaw.report).metadata.vulnerabilities), 0)
+    t.equal(vulnTotal(JSON.parse(reportRaw.report).metadata.vulnerabilities), 0)
   })
 })
 
 tap.test('total vuln count is calculated with some vulns', function (t) {
   return Report(fixtures['some-vulns'], {reporter: 'json'}).then((reportRaw) => {
-    t.equal(totalVulnCount(JSON.parse(reportRaw.report).metadata.vulnerabilities), 12)
+    t.equal(vulnTotal(JSON.parse(reportRaw.report).metadata.vulnerabilities), 12)
   })
 })
 
 tap.test('total vuln count is calculated with all severity vulns', function (t) {
   return Report(fixtures['all-severity-vulns'], {reporter: 'json'}).then((reportRaw) => {
-    t.equal(totalVulnCount(JSON.parse(reportRaw.report).metadata.vulnerabilities), 31)
+    t.equal(vulnTotal(JSON.parse(reportRaw.report).metadata.vulnerabilities), 31)
   })
 })
 

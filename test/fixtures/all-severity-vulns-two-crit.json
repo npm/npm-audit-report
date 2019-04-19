@@ -28,18 +28,6 @@
         },
         {
           "id": 534,
-          "path": "standard>eslint>debug",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 534,
-          "path": "standard>eslint>debug",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 534,
           "path": "standard>eslint-plugin-import>debug",
           "dev": true,
           "optional": false
@@ -85,114 +73,6 @@
       "target": "4.2.1",
       "resolves": [
         {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 1,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 157,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
-          "id": 157,
-          "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
-          "dev": true,
-          "optional": false
-        },
-        {
           "id": 157,
           "path": "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic",
           "dev": true,
@@ -232,55 +112,6 @@
     }
   ],
   "advisories": {
-    "1": {
-      "findings": [
-        {
-          "version": "1.1.7",
-          "paths": [
-            "tap>nyc>micromatch>braces>expand-range>fill-range>randomatic",
-            "tap>nyc>test-exclude>micromatch>braces>expand-range>fill-range>randomatic"
-          ],
-          "dev": true,
-          "optional": false
-        },
-        {
-          "version": "1.1.7",
-          "paths": [
-            "@npm/spife>chokidar>anymatch>micromatch>braces>expand-range>fill-range>randomatic"
-          ],
-          "dev": false,
-          "optional": false
-        }
-      ],
-      "id": 1,
-      "created": "2016-11-09T20:03:19.000Z",
-      "updated": "2018-03-02T23:21:42.009Z",
-      "deleted": null,
-      "title": "Cryptographically Weak PRNG",
-      "found_by": {
-        "name": "Sven Slootweg"
-      },
-      "reported_by": {
-        "name": "Sven Slootweg"
-      },
-      "module_name": "randomatic",
-      "cves": [
-        "CVE-2017-16028"
-      ],
-      "vulnerable_versions": "<3.0.0",
-      "patched_versions": ">=3.0.0",
-      "overview": "Affected versions of `randomatic` generate random values using a cryptographically weak psuedo-random number generator. This may result in predictable values instead of random values as intended.\r\n\r\n",
-      "recommendation": "Update to version 3.0.0 or later.\r\n",
-      "references": "[Commit #4a52695](https://github.com/jonschlinkert/randomatic/commit/4a526959b3a246ae8e4a82f9c182180907227fe1#diff-b9cfc7f2cdf78a7f4b91a753d10865a2)",
-      "access": "public",
-      "severity": "info",
-      "cwe": "CWE-330",
-      "metadata": {
-        "module_type": "Multi.Library",
-        "exploitability": 5,
-        "affected_components": ""
-      }
-    },
     "157": {
       "findings": [
         {
@@ -322,7 +153,7 @@
       "recommendation": "Update to version 3.0.0 or later.\r\n",
       "references": "[Commit #4a52695](https://github.com/jonschlinkert/randomatic/commit/4a526959b3a246ae8e4a82f9c182180907227fe1#diff-b9cfc7f2cdf78a7f4b91a753d10865a2)",
       "access": "public",
-      "severity": "moderate",
+      "severity": "low",
       "cwe": "CWE-330",
       "metadata": {
         "module_type": "Multi.Library",
@@ -362,7 +193,7 @@
       "recommendation": "Please update to version 2.3.3 or greater",
       "references": "- https://github.com/salesforce/tough-cookie/issues/92",
       "access": "public",
-      "severity": "critical",
+      "severity": "high",
       "cwe": "CWE-400",
       "metadata": {
         "module_type": "",
@@ -469,7 +300,7 @@
       "low": 8,
       "moderate": 4,
       "high": 2,
-      "critical": 1
+      "critical": 2
     },
     "dependencies": 375,
     "devDependencies": 466,

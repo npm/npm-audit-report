@@ -43,7 +43,7 @@ function summary (data, options) {
     log(`${green('0')} vulnerabilities`)
     return output
   } else {
-    const total = Utils.totalVulnCount(data.metadata.vulnerabilities)
+    const total = Utils.vulnTotal(data.metadata.vulnerabilities)
     const sev = Utils.severities(data.metadata.vulnerabilities)
 
     if (sev.length > 1) {

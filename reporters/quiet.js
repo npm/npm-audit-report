@@ -2,12 +2,19 @@
 
 const Utils = require('../lib/utils')
 
-const report = function (data) {
-  const totalVulnCount = Utils.totalVulnCount(data.metadata.vulnerabilities)
+const report = function (data, options) {
+  const defaults = {
+    severityThreshold: 'info'
+  }
+
+  const config = Object.assign({}, defaults, options)
+
+  Utils.vulnFilter(data, config)
+  const vulnTotal = Utils.vulnTotal(data.metadata.vulnerabilities)
 
   return {
     report: '',
-    exitCode: totalVulnCount === 0 ? 0 : 1
+    exitCode: vulnTotal ? 1 : 0
   }
 }
 

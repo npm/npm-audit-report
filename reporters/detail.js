@@ -1,6 +1,5 @@
 'use strict'
 
-const summary = require('./install.js').summary
 const Table = require('cli-table3')
 const Utils = require('../lib/utils')
 
@@ -29,21 +28,91 @@ const report = function (data, options) {
 
   const config = Object.assign({}, defaults, options)
 
-  let output = ''
-  let exit = 0
+  let output = []
 
   const log = function (value) {
-    output = output + value + '\n'
+    output.push(value)
+  }
+
+  Utils.vulnFilter(data, config)
+  const summary = Utils.vulnSummary(data.metadata.vulnerabilities, config)
+
+  const header = function () {
+    const tableOptions = {
+      colWidths: [78]
+    }
+    tableOptions.chars = blankChars
+    const table = new Table(tableOptions)
+    table.push([{
+      content: '=== npm audit security report ===',
+      vAlign: 'center',
+      hAlign: 'center'
+    }])
+    log(table.toString())
+  }
+
+  const actions = function (data, config) {
+    let reviewFlag = false
+
+    data.actions.forEach((action) => {
+      if (action.action === 'update' || action.action === 'install') {
+        const recommendation = Utils.getRecommendation(action, config)
+        const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
+        log(`# Run ${Utils.color(' ' + recommendation.cmd + ' ', 'inverse', config.withColor)} to resolve ${action.resolves.length} ${label}`)
+        if (recommendation.isBreaking) {
+          log(`SEMVER WARNING: Recommended action is a potentially breaking change`)
+        }
+      }
+      if (action.action === 'review' && !reviewFlag) {
+        const tableOptions = {
+          colWidths: [78]
+        }
+        if (!config.withUnicode) {
+          tableOptions.chars = blankChars
+        }
+        const table = new Table(tableOptions)
+        table.push([{
+          content: 'Manual Review\nSome vulnerabilities require your attention to resolve\n\nVisit https://go.npm.me/audit-guide for additional guidance',
+          vAlign: 'center',
+          hAlign: 'center'
+        }])
+
+        log(table.toString())
+        reviewFlag = true
+      }
+
+      action.resolves.forEach((resolution) => {
+        const advisory = data.advisories[resolution.id]
+        const tableOptions = {
+          colWidths: [15, 62],
+          wordWrap: true
+        }
+        if (!config.withUnicode) {
+          tableOptions.chars = blankChars
+        }
+        const table = new Table(tableOptions)
+
+        table.push(
+          {[Utils.severityLabel(advisory.severity, config.withColor, true)]: Utils.color(advisory.title, 'bold', config.withColor)},
+          {'Package': advisory.module_name},
+          {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
+          {'Path': `${resolution.path.split('>').join(Utils.color(' > ', 'grey', config.withColor))}`},
+          {'More info': 'https://nodesecurity.io/advisories/' + advisory.id}
+        )
+
+        if (action.action === 'review') {
+          const patchedIn = advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions
+          table.splice(2, 0, {'Patched in': patchedIn})
+        }
+
+        log(table.toString() + '\n\n')
+      })
+    })
   }
 
   const footer = function (data) {
-    const total = Utils.totalVulnCount(data.metadata.vulnerabilities)
-
-    if (total > 0) {
-      exit = 1
-    }
-    log(`${summary(data, config)} in ${data.metadata.totalDependencies} scanned package${data.metadata.totalDependencies === 1 ? '' : 's'}`)
-    if (total) {
+    log(`${summary.msg} in ${data.metadata.totalDependencies} scanned package${data.metadata.totalDependencies === 1 ? '' : 's'}`)
+    if (summary.total) {
       const counts = data.actions.reduce((acc, {action, isMajor, resolves}) => {
         if (action === 'update' || (action === 'install' && !isMajor)) {
           resolves.forEach(({id, path}) => acc.advisories.add(`${id}::${path}`))
@@ -70,127 +139,15 @@ const report = function (data, options) {
     }
   }
 
-  const reportTitle = function () {
-    const tableOptions = {
-      colWidths: [78]
-    }
-    tableOptions.chars = blankChars
-    const table = new Table(tableOptions)
-    table.push([{
-      content: '=== npm audit security report ===',
-      vAlign: 'center',
-      hAlign: 'center'
-    }])
-    log(table.toString())
+  header()
+  if (summary.total) { // vulns found display a report.
+    actions(data, config)
   }
-
-  const actions = function (data, config) {
-    reportTitle()
-
-    if (Object.keys(data.advisories).length !== 0) {
-      // vulns found display a report.
-
-      let reviewFlag = false
-
-      data.actions.forEach((action) => {
-        if (action.action === 'update' || action.action === 'install') {
-          const recommendation = getRecommendation(action, config)
-          const label = action.resolves.length === 1 ? 'vulnerability' : 'vulnerabilities'
-          log(`# Run ${Utils.color(' ' + recommendation.cmd + ' ', 'inverse', config.withColor)} to resolve ${action.resolves.length} ${label}`)
-          if (recommendation.isBreaking) {
-            log(`SEMVER WARNING: Recommended action is a potentially breaking change`)
-          }
-
-          action.resolves.forEach((resolution) => {
-            const advisory = data.advisories[resolution.id]
-            const tableOptions = {
-              colWidths: [15, 62],
-              wordWrap: true
-            }
-            if (!config.withUnicode) {
-              tableOptions.chars = blankChars
-            }
-            const table = new Table(tableOptions)
-
-            table.push(
-              {[Utils.severityLabel(advisory.severity, config.withColor, true)]: Utils.color(advisory.title, 'bold', config.withColor)},
-              {'Package': advisory.module_name},
-              {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
-              {'Path': `${resolution.path.split('>').join(Utils.color(' > ', 'grey', config.withColor))}`},
-              {'More info': advisory.url || `https://www.npmjs.com/advisories/${advisory.id}`}
-            )
-
-            log(table.toString() + '\n\n')
-          })
-        }
-        if (action.action === 'review') {
-          if (!reviewFlag) {
-            const tableOptions = {
-              colWidths: [78]
-            }
-            if (!config.withUnicode) {
-              tableOptions.chars = blankChars
-            }
-            const table = new Table(tableOptions)
-            table.push([{
-              content: 'Manual Review\nSome vulnerabilities require your attention to resolve\n\nVisit https://go.npm.me/audit-guide for additional guidance',
-              vAlign: 'center',
-              hAlign: 'center'
-            }])
-
-            log(table.toString())
-          }
-          reviewFlag = true
-
-          action.resolves.forEach((resolution) => {
-            const advisory = data.advisories[resolution.id]
-            const tableOptions = {
-              colWidths: [15, 62],
-              wordWrap: true
-            }
-            if (!config.withUnicode) {
-              tableOptions.chars = blankChars
-            }
-            const table = new Table(tableOptions)
-            const patchedIn = advisory.patched_versions.replace(' ', '') === '<0.0.0' ? 'No patch available' : advisory.patched_versions
-
-            table.push(
-              {[Utils.severityLabel(advisory.severity, config.withColor, true)]: Utils.color(advisory.title, 'bold', config.withColor)},
-              {'Package': advisory.module_name},
-              {'Patched in': patchedIn},
-              {'Dependency of': `${resolution.path.split('>')[0]} ${resolution.dev ? '[dev]' : ''}`},
-              {'Path': `${resolution.path.split('>').join(Utils.color(' > ', 'grey', config.withColor))}`},
-              {'More info': advisory.url || `https://www.npmjs.com/advisories/${advisory.id}`}
-            )
-            log(table.toString())
-          })
-        }
-      })
-    }
-  }
-
-  actions(data, config)
   footer(data)
 
   return {
-    report: output.trim(),
-    exitCode: exit
-  }
-}
-
-const getRecommendation = function (action, config) {
-  if (action.action === 'install') {
-    const isDev = action.resolves[0].dev
-
-    return {
-      cmd: `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`,
-      isBreaking: action.isMajor
-    }
-  } else {
-    return {
-      cmd: `npm update ${action.module} --depth ${action.depth}`,
-      isBreaking: false
-    }
+    report: output.join('\n').trim(),
+    exitCode: summary.total ? 1 : 0
   }
 }
 
