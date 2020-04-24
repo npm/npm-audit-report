@@ -1,10 +1,10 @@
 'use strict'
 
 const tap = require('tap')
-const fixtures = require('./lib/test-fixtures')
+const fixtures = require('./fixtures')
 
 tap.test('a test should be able to modify a fixture', function (t) {
-  const fixture = fixtures['one-vuln']
+  const fixture = fixtures('one-vuln')
   fixture.actions.splice(0, 1)
   delete fixture.muted
   fixture.metadata.vulnerabilities.high = 0
@@ -21,7 +21,7 @@ tap.test('a test should be able to modify a fixture', function (t) {
 })
 
 tap.test('a test should not be able to see how a previous test modified a fixture', function (t) {
-  const fixture = fixtures['one-vuln']
+  const fixture = fixtures('one-vuln')
   t.equal(fixture.actions.length, 1)
   t.is('muted' in fixture, true)
   t.same(fixture.metadata.vulnerabilities, {

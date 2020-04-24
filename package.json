@@ -23,7 +23,6 @@
     "console-control-strings": "^1.1.0"
   },
   "devDependencies": {
-    "keyfob": "^1.0.0",
     "tap": "^14.10.7"
   },
   "directories": {

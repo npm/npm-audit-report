@@ -2,10 +2,10 @@
 
 const tap = require('tap')
 const Report = require('../')
-const fixtures = require('./lib/test-fixtures')
+const fixtures = require('./fixtures')
 
 tap.test('it generates a json report with zero for every severity', async t => {
-  const reportRaw = Report(fixtures['no-vulns'], {reporter: 'json'})
+  const reportRaw = Report(fixtures('no-vulns'), {reporter: 'json'})
   const exitCode = reportRaw.exitCode
   const vulnerabilities = JSON.parse(reportRaw.report).metadata.vulnerabilities
 
