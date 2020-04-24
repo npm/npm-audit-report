@@ -24,10 +24,9 @@ const options = {
   reporter: 'json'
 }
 
-Report(response, options, (result) => {
-  console.log(result.report)
-  process.exitCode = result.exitCode
-})
+const result = Report(response, options)
+console.log(result.report)
+process.exitCode = result.exitCode
 ```
 
 
