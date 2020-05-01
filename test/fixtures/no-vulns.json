@@ -1,18 +1,22 @@
 {
-  "actions": [],
-  "advisories": {},
-  "muted": [],
-  "metadata":{
-    "dependencies": 375,
-    "devDependencies": 466,
-    "optionalDependencies": 77,
-    "totalDependencies": 918,
+  "auditReportVersion": 2,
+  "vulnerabilities": {},
+  "metadata": {
     "vulnerabilities": {
       "info": 0,
       "low": 0,
       "moderate": 0,
       "high": 0,
-      "critical": 0
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 1,
+      "dev": 0,
+      "optional": 0,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 1
     }
-  }    
+  }
 }

@@ -8,9 +8,21 @@
         {
           "findings": [
             {
-              "version": "1.0.0",
+              "version": "0.0.8",
               "paths": [
-                "minimist"
+                "mkdirp>minimist"
+              ]
+            },
+            {
+              "version": "0.0.8",
+              "paths": [
+                "nyc>caching-transform>mkdirp>minimist",
+                "nyc>find-cache-dir>mkdirp>minimist",
+                "nyc>istanbul-lib-report>mkdirp>minimist",
+                "nyc>istanbul-lib-source-maps>mkdirp>minimist",
+                "nyc>mkdirp>minimist",
+                "nyc>spawn-wrap>mkdirp>minimist",
+                "nyc>istanbul-reports>handlebars>optimist>minimist"
               ]
             }
           ],
@@ -47,30 +59,53 @@
           "url": "https://npmjs.com/advisories/1179"
         }
       ],
-      "effects": [],
+      "effects": [
+        "mkdirp"
+      ],
       "range": "<0.2.1 || >=1.0.0 <1.2.3",
       "nodes": [
         "node_modules/minimist"
       ],
-      "fixAvailable": true
+      "fixAvailable": {
+        "name": "mkdirp",
+        "version": "0.5.5",
+        "isSemVerMajor": false
+      }
+    },
+    "mkdirp": {
+      "name": "mkdirp",
+      "severity": "low",
+      "via": [
+        "minimist"
+      ],
+      "effects": [],
+      "range": "0.4.1 - 0.5.1",
+      "nodes": [
+        "node_modules/mkdirp"
+      ],
+      "fixAvailable": {
+        "name": "mkdirp",
+        "version": "0.5.5",
+        "isSemVerMajor": false
+      }
     }
   },
   "metadata": {
     "vulnerabilities": {
       "info": 0,
-      "low": 1,
+      "low": 2,
       "moderate": 0,
       "high": 0,
       "critical": 0,
-      "total": 1
+      "total": 2
     },
     "dependencies": {
-      "prod": 1,
+      "prod": 2,
       "dev": 0,
       "optional": 0,
       "peer": 0,
       "peerOptional": 0,
-      "total": 1
+      "total": 2
     }
   }
 }

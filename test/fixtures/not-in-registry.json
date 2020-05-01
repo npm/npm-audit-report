@@ -8,7 +8,7 @@
         {
           "findings": [
             {
-              "version": "1.0.0",
+              "version": "0.0.8",
               "paths": [
                 "minimist"
               ]
@@ -47,30 +47,45 @@
           "url": "https://npmjs.com/advisories/1179"
         }
       ],
-      "effects": [],
+      "effects": [
+        "@isaacs/this-does-not-exist-at-all"
+      ],
       "range": "<0.2.1 || >=1.0.0 <1.2.3",
       "nodes": [
         "node_modules/minimist"
       ],
-      "fixAvailable": true
+      "fixAvailable": false
+    },
+    "@isaacs/this-does-not-exist-at-all": {
+      "name": "@isaacs/this-does-not-exist-at-all",
+      "severity": "low",
+      "via": [
+        "minimist"
+      ],
+      "effects": [],
+      "range": "0.5.1",
+      "nodes": [
+        "node_modules/@isaacs/this-does-not-exist-at-all"
+      ],
+      "fixAvailable": false
     }
   },
   "metadata": {
     "vulnerabilities": {
       "info": 0,
-      "low": 1,
+      "low": 2,
       "moderate": 0,
       "high": 0,
       "critical": 0,
-      "total": 1
+      "total": 2
     },
     "dependencies": {
-      "prod": 1,
+      "prod": 0,
       "dev": 0,
-      "optional": 0,
+      "optional": 2,
       "peer": 0,
       "peerOptional": 0,
-      "total": 1
+      "total": 2
     }
   }
 }

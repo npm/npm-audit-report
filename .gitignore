@@ -1,6 +1,7 @@
-node_modules
+/node_modules
+/coverage
 .vscode
-.nyc_output
+/.nyc_output
 .DS_Store
 .idea
 npm-audit-report.iml

@@ -8,7 +8,7 @@
         {
           "findings": [
             {
-              "version": "1.0.0",
+              "version": "0.0.8",
               "paths": [
                 "minimist"
               ]
@@ -47,30 +47,45 @@
           "url": "https://npmjs.com/advisories/1179"
         }
       ],
-      "effects": [],
+      "effects": [
+        "@isaacs/minimist-git-dep"
+      ],
       "range": "<0.2.1 || >=1.0.0 <1.2.3",
       "nodes": [
         "node_modules/minimist"
       ],
-      "fixAvailable": true
+      "fixAvailable": false
+    },
+    "@isaacs/minimist-git-dep": {
+      "name": "@isaacs/minimist-git-dep",
+      "severity": "low",
+      "via": [
+        "minimist"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@isaacs/minimist-git-dep"
+      ],
+      "fixAvailable": false
     }
   },
   "metadata": {
     "vulnerabilities": {
       "info": 0,
-      "low": 1,
+      "low": 2,
       "moderate": 0,
       "high": 0,
       "critical": 0,
-      "total": 1
+      "total": 2
     },
     "dependencies": {
-      "prod": 1,
-      "dev": 0,
+      "prod": 0,
+      "dev": 2,
       "optional": 0,
       "peer": 0,
       "peerOptional": 0,
-      "total": 1
+      "total": 2
     }
   }
 }
