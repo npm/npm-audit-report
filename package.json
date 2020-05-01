@@ -23,7 +23,8 @@
   "author": "Adam Baldwin",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^4.0.0"
+    "chalk": "^4.0.0",
+    "require-inject": "^1.4.4"
   },
   "devDependencies": {
     "tap": "^14.10.7"
