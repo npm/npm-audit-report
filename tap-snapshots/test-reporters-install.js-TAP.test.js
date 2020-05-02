@@ -70,6 +70,8 @@ exports[`test/reporters/install.js TAP dep-vuln-with-own-vuln.json > default set
 
 To address all issues, run:
   npm audit fix
+
+Run \`npm audit\` for details.
 exitCode=1
 `
 
@@ -78,6 +80,8 @@ exports[`test/reporters/install.js TAP dep-vuln-with-own-vuln.json > no color 1`
 
 To address all issues, run:
   npm audit fix
+
+Run \`npm audit\` for details.
 exitCode=1
 `
 
@@ -158,6 +162,8 @@ exports[`test/reporters/install.js TAP non-semver-major-force-fix.json > default
 
 To address all issues, run:
   npm audit fix --force
+
+Run \`npm audit\` for details.
 exitCode=1
 `
 
@@ -166,6 +172,8 @@ exports[`test/reporters/install.js TAP non-semver-major-force-fix.json > no colo
 
 To address all issues, run:
   npm audit fix --force
+
+Run \`npm audit\` for details.
 exitCode=1
 `
 
@@ -229,6 +237,8 @@ To address issues that do not require attention, run:
 
 To address all issues (including breaking changes), run:
   npm audit fix --force
+
+Run \`npm audit\` for details.
 exitCode=1
 `
 
@@ -240,6 +250,8 @@ To address issues that do not require attention, run:
 
 To address all issues (including breaking changes), run:
   npm audit fix --force
+
+Run \`npm audit\` for details.
 exitCode=1
 `
 
@@ -270,6 +282,8 @@ exports[`test/reporters/install.js TAP one-vuln.json > default settings 1`] = `
 
 To address all issues, run:
   npm audit fix
+
+Run \`npm audit\` for details.
 exitCode=1
 `
 
@@ -278,6 +292,8 @@ exports[`test/reporters/install.js TAP one-vuln.json > no color 1`] = `
 
 To address all issues, run:
   npm audit fix
+
+Run \`npm audit\` for details.
 exitCode=1
 `
 
