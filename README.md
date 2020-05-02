@@ -66,3 +66,4 @@ provided directly.
 | color    | `true`, `false`                      | `true`    | indicates if some report elements should use colors |
 | unicode  | `true`, `false`                      | `true`    | indicates if unicode characters should be used|
 | indent   | Number or String                     | `2`       | indentation for `'json'` report|
+| auditLevel | 'info', 'low', 'moderate', 'high', 'critical', 'none' | `low` (ie, exit 0 if only `info` advisories are found) | level of vulnerability that will trigger a non-zero exit code (set to 'none' to always exit with a 0 status code) |
