@@ -42,3 +42,12 @@ t.test('install is default reporter', async t => {
     indent: 2,
   }))
 })
+
+t.test('falsy audit data', t => {
+  t.throws(
+    () => nar(),
+    { code: 'ENOAUDITDATA' },
+    'should throw a missing audit data error'
+  )
+  t.end()
+})
