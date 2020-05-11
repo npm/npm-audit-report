@@ -7,7 +7,6 @@ t.equal(nar.reporters.install, require('../lib/reporters/install.js'))
 t.equal(nar.reporters.detail, require('../lib/reporters/detail.js'))
 t.equal(nar.reporters.json, require('../lib/reporters/json.js'))
 t.equal(nar.reporters.quiet, require('../lib/reporters/quiet.js'))
-t.equal(nar.reporters.warn, require('../lib/reporters/warn.js'))
 
 const metadata = { vulnerabilities: {} }
 const fake = { reporter: 'fake' }
@@ -44,9 +43,11 @@ t.test('install is default reporter', async t => {
   }))
 })
 
-t.test('falsy audit data', async t => {
-  t.strictSame(nar(null), {
-    exitCode: 0,
-    report: 'No audit report found',
-  }, 'should report a warning message')
+t.test('falsy audit data', t => {
+  t.throws(
+    () => nar(),
+    { code: 'ENOAUDITDATA' },
+    'should throw a missing audit data error'
+  )
+  t.end()
 })
