@@ -54,7 +54,8 @@ Will install nyc@15.0.0, which is a breaking change
     [1myargs[22m  8.0.1 - 11.1.0 || 12.0.0-candidate.0 - 12.0.1
     Depends on vulnerable versions of [1mos-locale[22m
     [2mnode_modules/nyc/node_modules/yargs[22m
-      [1mnyc[22m  11.0.0-candidate.1 - 13.1.0
+      [1mnyc[22m  6.2.0-alpha - 13.1.0
+      Depends on vulnerable versions of [1mmkdirp[22m
       Depends on vulnerable versions of [1myargs[22m
       [2mnode_modules/nyc[22m
 
@@ -68,13 +69,18 @@ Severity: [31m[1mhigh[22m[39m
 
 [1mminimist[22m  <0.2.1 || >=1.0.0 <1.2.3
 [1mPrototype Pollution[22m - https://npmjs.com/advisories/1179
-[32m[1mfix available[22m[39m via \`npm audit fix\`
+[33m[1mfix available[22m[39m via \`npm audit fix --force\`
+Will install nyc@15.0.0, which is a breaking change
 [2mnode_modules/minimist[22m
 [2mnode_modules/nyc/node_modules/minimist[22m
   [1mmkdirp[22m  0.4.1 - 0.5.1
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/mkdirp[22m
   [2mnode_modules/nyc/node_modules/mkdirp[22m
+    [1mnyc[22m  6.2.0-alpha - 13.1.0
+    Depends on vulnerable versions of [1mmkdirp[22m
+    Depends on vulnerable versions of [1myargs[22m
+    [2mnode_modules/nyc[22m
   [1moptimist[22m  >=0.6.0
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/nyc/node_modules/optimist[22m
@@ -168,7 +174,8 @@ node_modules/nyc/node_modules/mem
     yargs  8.0.1 - 11.1.0 || 12.0.0-candidate.0 - 12.0.1
     Depends on vulnerable versions of os-locale
     node_modules/nyc/node_modules/yargs
-      nyc  11.0.0-candidate.1 - 13.1.0
+      nyc  6.2.0-alpha - 13.1.0
+      Depends on vulnerable versions of mkdirp
       Depends on vulnerable versions of yargs
       node_modules/nyc
 
@@ -182,13 +189,18 @@ node_modules/subtext
 
 minimist  <0.2.1 || >=1.0.0 <1.2.3
 Prototype Pollution - https://npmjs.com/advisories/1179
-fix available via \`npm audit fix\`
+fix available via \`npm audit fix --force\`
+Will install nyc@15.0.0, which is a breaking change
 node_modules/minimist
 node_modules/nyc/node_modules/minimist
   mkdirp  0.4.1 - 0.5.1
   Depends on vulnerable versions of minimist
   node_modules/mkdirp
   node_modules/nyc/node_modules/mkdirp
+    nyc  6.2.0-alpha - 13.1.0
+    Depends on vulnerable versions of mkdirp
+    Depends on vulnerable versions of yargs
+    node_modules/nyc
   optimist  >=0.6.0
   Depends on vulnerable versions of minimist
   node_modules/nyc/node_modules/optimist
@@ -452,19 +464,25 @@ Will install nyc@15.0.0, which is a breaking change
     [1myargs[22m  8.0.1 - 11.1.0 || 12.0.0-candidate.0 - 12.0.1
     Depends on vulnerable versions of [1mos-locale[22m
     [2mnode_modules/nyc/node_modules/yargs[22m
-      [1mnyc[22m  11.0.0-candidate.1 - 13.1.0
+      [1mnyc[22m  6.2.0-alpha - 13.1.0
+      Depends on vulnerable versions of [1mmkdirp[22m
       Depends on vulnerable versions of [1myargs[22m
       [2mnode_modules/nyc[22m
 
 [1mminimist[22m  <0.2.1 || >=1.0.0 <1.2.3
 [1mPrototype Pollution[22m - https://npmjs.com/advisories/1179
-[32m[1mfix available[22m[39m via \`npm audit fix\`
+[33m[1mfix available[22m[39m via \`npm audit fix --force\`
+Will install nyc@15.0.0, which is a breaking change
 [2mnode_modules/minimist[22m
 [2mnode_modules/nyc/node_modules/minimist[22m
   [1mmkdirp[22m  0.4.1 - 0.5.1
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/mkdirp[22m
   [2mnode_modules/nyc/node_modules/mkdirp[22m
+    [1mnyc[22m  6.2.0-alpha - 13.1.0
+    Depends on vulnerable versions of [1mmkdirp[22m
+    Depends on vulnerable versions of [1myargs[22m
+    [2mnode_modules/nyc[22m
   [1moptimist[22m  >=0.6.0
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/nyc/node_modules/optimist[22m
@@ -543,19 +561,25 @@ node_modules/nyc/node_modules/mem
     yargs  8.0.1 - 11.1.0 || 12.0.0-candidate.0 - 12.0.1
     Depends on vulnerable versions of os-locale
     node_modules/nyc/node_modules/yargs
-      nyc  11.0.0-candidate.1 - 13.1.0
+      nyc  6.2.0-alpha - 13.1.0
+      Depends on vulnerable versions of mkdirp
       Depends on vulnerable versions of yargs
       node_modules/nyc
 
 minimist  <0.2.1 || >=1.0.0 <1.2.3
 Prototype Pollution - https://npmjs.com/advisories/1179
-fix available via \`npm audit fix\`
+fix available via \`npm audit fix --force\`
+Will install nyc@15.0.0, which is a breaking change
 node_modules/minimist
 node_modules/nyc/node_modules/minimist
   mkdirp  0.4.1 - 0.5.1
   Depends on vulnerable versions of minimist
   node_modules/mkdirp
   node_modules/nyc/node_modules/mkdirp
+    nyc  6.2.0-alpha - 13.1.0
+    Depends on vulnerable versions of mkdirp
+    Depends on vulnerable versions of yargs
+    node_modules/nyc
   optimist  >=0.6.0
   Depends on vulnerable versions of minimist
   node_modules/nyc/node_modules/optimist
