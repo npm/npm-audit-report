@@ -23,11 +23,11 @@
   "author": "Adam Baldwin",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^4.0.0",
-    "require-inject": "^1.4.4"
+    "chalk": "^4.0.0"
   },
   "devDependencies": {
-    "tap": "^14.10.7"
+    "tap": "^14.10.7",
+    "require-inject": "^1.4.4"
   },
   "directories": {
     "lib": "lib",
