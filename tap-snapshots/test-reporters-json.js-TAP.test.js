@@ -485,6 +485,188 @@ exports[`test/reporters/json.js TAP dep-vuln-with-own-vuln.json > no indent 1`] 
 exitCode=1
 `
 
+exports[`test/reporters/json.js TAP gatsby.json > default settings 1`] = `
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "mem": {
+      "name": "mem",
+      "severity": "low",
+      "via": [
+        {
+          "id": 1084,
+          "url": "https://npmjs.com/advisories/1084",
+          "title": "Denial of Service",
+          "severity": "low",
+          "vulnerable_versions": "<4.0.0"
+        }
+      ],
+      "effects": [
+        "os-locale"
+      ],
+      "range": "<4.0.0",
+      "nodes": [
+        "node_modules/mem"
+      ],
+      "fixAvailable": true
+    },
+    "yargs-parser": {
+      "name": "yargs-parser",
+      "severity": "low",
+      "via": [
+        {
+          "id": 1500,
+          "url": "https://npmjs.com/advisories/1500",
+          "title": "Prototype Pollution",
+          "severity": "low",
+          "vulnerable_versions": "<13.1.2 || >=14.0.0 <15.0.1 || >=16.0.0 <18.1.2"
+        }
+      ],
+      "effects": [
+        "yargs"
+      ],
+      "range": "<=13.1.1 || 14.0.0 - 15.0.0 || 16.0.0 - 18.1.1",
+      "nodes": [
+        "node_modules/@gatsbyjs/relay-compiler/node_modules/yargs-parser"
+      ],
+      "fixAvailable": true
+    },
+    "os-locale": {
+      "name": "os-locale",
+      "severity": "low",
+      "via": [
+        "mem"
+      ],
+      "effects": [
+        "yargs"
+      ],
+      "range": "2.0.0 - 3.0.0",
+      "nodes": [
+        "node_modules/os-locale"
+      ],
+      "fixAvailable": true
+    },
+    "yargs": {
+      "name": "yargs",
+      "severity": "low",
+      "via": [
+        "os-locale",
+        "yargs-parser"
+      ],
+      "effects": [
+        "@gatsbyjs/relay-compiler"
+      ],
+      "range": "4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0",
+      "nodes": [
+        "node_modules/@gatsbyjs/relay-compiler/node_modules/yargs"
+      ],
+      "fixAvailable": true
+    },
+    "@gatsbyjs/relay-compiler": {
+      "name": "@gatsbyjs/relay-compiler",
+      "severity": "low",
+      "via": [
+        "yargs"
+      ],
+      "effects": [
+        "gatsby"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@gatsbyjs/relay-compiler"
+      ],
+      "fixAvailable": true
+    },
+    "gatsby": {
+      "name": "gatsby",
+      "severity": "low",
+      "via": [
+        "@gatsbyjs/relay-compiler",
+        "gatsby-cli"
+      ],
+      "effects": [
+        "gatsby-interface"
+      ],
+      "range": "2.1.1 - 2.18.3 || 2.20.24-unifiedroutes.87 || 2.20.24-unifiedroutes-v2.146 - 2.20.24-unifiedroutes-v2.151 || 2.22.13-recipes-renderer.56 - 2.22.13-recipes-renderer.75 || 2.24.13-telemetry-test.100 - 2.24.13-telemetry-test.106 || >=2.24.25",
+      "nodes": [
+        "node_modules/gatsby-recipes/node_modules/gatsby",
+        "node_modules/gatsby"
+      ],
+      "fixAvailable": true
+    },
+    "gatsby-interface": {
+      "name": "gatsby-interface",
+      "severity": "low",
+      "via": [
+        "gatsby"
+      ],
+      "effects": [
+        "gatsby-recipes"
+      ],
+      "range": "<=0.0.165-bump-reach-deps-20200527T1634 || 0.0.165 || 0.0.166",
+      "nodes": [
+        "node_modules/gatsby-recipes/node_modules/gatsby-interface"
+      ],
+      "fixAvailable": true
+    },
+    "gatsby-recipes": {
+      "name": "gatsby-recipes",
+      "severity": "low",
+      "via": [
+        "gatsby-interface"
+      ],
+      "effects": [
+        "gatsby-cli"
+      ],
+      "range": "0.1.32-recipes-renderer.56 - 0.1.32-recipes-renderer.75 || 0.1.58-telemetry-test.100 - 0.1.58-telemetry-test.106 || >=0.2.0",
+      "nodes": [
+        "node_modules/gatsby-recipes"
+      ],
+      "fixAvailable": true
+    },
+    "gatsby-cli": {
+      "name": "gatsby-cli",
+      "severity": "low",
+      "via": [
+        "gatsby-recipes"
+      ],
+      "effects": [
+        "gatsby"
+      ],
+      "range": "2.12.38-recipes-renderer.56 - 2.12.38-recipes-renderer.75 || 2.12.68-telemetry-test.100 - 2.12.68-telemetry-test.106 || >=2.12.70",
+      "nodes": [
+        "node_modules/gatsby-cli"
+      ],
+      "fixAvailable": true
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 9,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 9
+    },
+    "dependencies": {
+      "prod": 2028,
+      "dev": 0,
+      "optional": 127,
+      "peer": 304,
+      "peerOptional": 0,
+      "total": 2367
+    }
+  }
+}
+exitCode=1
+`
+
+exports[`test/reporters/json.js TAP gatsby.json > no indent 1`] = `
+{"auditReportVersion":2,"vulnerabilities":{"mem":{"name":"mem","severity":"low","via":[{"id":1084,"url":"https://npmjs.com/advisories/1084","title":"Denial of Service","severity":"low","vulnerable_versions":"<4.0.0"}],"effects":["os-locale"],"range":"<4.0.0","nodes":["node_modules/mem"],"fixAvailable":true},"yargs-parser":{"name":"yargs-parser","severity":"low","via":[{"id":1500,"url":"https://npmjs.com/advisories/1500","title":"Prototype Pollution","severity":"low","vulnerable_versions":"<13.1.2 || >=14.0.0 <15.0.1 || >=16.0.0 <18.1.2"}],"effects":["yargs"],"range":"<=13.1.1 || 14.0.0 - 15.0.0 || 16.0.0 - 18.1.1","nodes":["node_modules/@gatsbyjs/relay-compiler/node_modules/yargs-parser"],"fixAvailable":true},"os-locale":{"name":"os-locale","severity":"low","via":["mem"],"effects":["yargs"],"range":"2.0.0 - 3.0.0","nodes":["node_modules/os-locale"],"fixAvailable":true},"yargs":{"name":"yargs","severity":"low","via":["os-locale","yargs-parser"],"effects":["@gatsbyjs/relay-compiler"],"range":"4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0","nodes":["node_modules/@gatsbyjs/relay-compiler/node_modules/yargs"],"fixAvailable":true},"@gatsbyjs/relay-compiler":{"name":"@gatsbyjs/relay-compiler","severity":"low","via":["yargs"],"effects":["gatsby"],"range":"*","nodes":["node_modules/@gatsbyjs/relay-compiler"],"fixAvailable":true},"gatsby":{"name":"gatsby","severity":"low","via":["@gatsbyjs/relay-compiler","gatsby-cli"],"effects":["gatsby-interface"],"range":"2.1.1 - 2.18.3 || 2.20.24-unifiedroutes.87 || 2.20.24-unifiedroutes-v2.146 - 2.20.24-unifiedroutes-v2.151 || 2.22.13-recipes-renderer.56 - 2.22.13-recipes-renderer.75 || 2.24.13-telemetry-test.100 - 2.24.13-telemetry-test.106 || >=2.24.25","nodes":["node_modules/gatsby-recipes/node_modules/gatsby","node_modules/gatsby"],"fixAvailable":true},"gatsby-interface":{"name":"gatsby-interface","severity":"low","via":["gatsby"],"effects":["gatsby-recipes"],"range":"<=0.0.165-bump-reach-deps-20200527T1634 || 0.0.165 || 0.0.166","nodes":["node_modules/gatsby-recipes/node_modules/gatsby-interface"],"fixAvailable":true},"gatsby-recipes":{"name":"gatsby-recipes","severity":"low","via":["gatsby-interface"],"effects":["gatsby-cli"],"range":"0.1.32-recipes-renderer.56 - 0.1.32-recipes-renderer.75 || 0.1.58-telemetry-test.100 - 0.1.58-telemetry-test.106 || >=0.2.0","nodes":["node_modules/gatsby-recipes"],"fixAvailable":true},"gatsby-cli":{"name":"gatsby-cli","severity":"low","via":["gatsby-recipes"],"effects":["gatsby"],"range":"2.12.38-recipes-renderer.56 - 2.12.38-recipes-renderer.75 || 2.12.68-telemetry-test.100 - 2.12.68-telemetry-test.106 || >=2.12.70","nodes":["node_modules/gatsby-cli"],"fixAvailable":true}},"metadata":{"vulnerabilities":{"info":0,"low":9,"moderate":0,"high":0,"critical":0,"total":9},"dependencies":{"prod":2028,"dev":0,"optional":127,"peer":304,"peerOptional":0,"total":2367}}}
+exitCode=1
+`
+
 exports[`test/reporters/json.js TAP git-dep.json > default settings 1`] = `
 {
   "auditReportVersion": 2,

@@ -295,6 +295,136 @@ To address all issues, run:
 exitCode=1
 `
 
+exports[`test/reporters/detail.js TAP gatsby.json > default settings 1`] = `
+[1m# npm audit report[22m
+
+[1mmem[22m  <4.0.0
+[1mDenial of Service[22m - https://npmjs.com/advisories/1084
+[32m[1mfix available[22m[39m via \`npm audit fix\`
+[2mnode_modules/mem[22m
+  [1mos-locale[22m  2.0.0 - 3.0.0
+  Depends on vulnerable versions of [1mmem[22m
+  [2mnode_modules/os-locale[22m
+    [1myargs[22m  4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0
+    Depends on vulnerable versions of [1mos-locale[22m
+    Depends on vulnerable versions of [1myargs-parser[22m
+    [2mnode_modules/@gatsbyjs/relay-compiler/node_modules/yargs[22m
+      [1m@gatsbyjs/relay-compiler[22m  *
+      Depends on vulnerable versions of [1myargs[22m
+      [2mnode_modules/@gatsbyjs/relay-compiler[22m
+        [1mgatsby[22m  2.1.1 - 2.18.3 || 2.20.24-unifiedroutes.87 || 2.20.24-unifiedroutes-v2.146 - 2.20.24-unifiedroutes-v2.151 || 2.22.13-recipes-renderer.56 - 2.22.13-recipes-renderer.75 || 2.24.13-telemetry-test.100 - 2.24.13-telemetry-test.106 || >=2.24.25
+        Depends on vulnerable versions of [1m@gatsbyjs/relay-compiler[22m
+        Depends on vulnerable versions of [1mgatsby-cli[22m
+        [2mnode_modules/gatsby-recipes/node_modules/gatsby[22m
+        [2mnode_modules/gatsby[22m
+          [1mgatsby-interface[22m  <=0.0.165-bump-reach-deps-20200527T1634 || 0.0.165 || 0.0.166
+          Depends on vulnerable versions of [1mgatsby[22m
+          [2mnode_modules/gatsby-recipes/node_modules/gatsby-interface[22m
+            [1mgatsby-recipes[22m  0.1.32-recipes-renderer.56 - 0.1.32-recipes-renderer.75 || 0.1.58-telemetry-test.100 - 0.1.58-telemetry-test.106 || >=0.2.0
+            Depends on vulnerable versions of [1mgatsby-interface[22m
+            [2mnode_modules/gatsby-recipes[22m
+              [1mgatsby-cli[22m  2.12.38-recipes-renderer.56 - 2.12.38-recipes-renderer.75 || 2.12.68-telemetry-test.100 - 2.12.68-telemetry-test.106 || >=2.12.70
+              Depends on vulnerable versions of [1mgatsby-recipes[22m
+              [2mnode_modules/gatsby-cli[22m
+
+[1myargs-parser[22m  <=13.1.1 || 14.0.0 - 15.0.0 || 16.0.0 - 18.1.1
+[1mPrototype Pollution[22m - https://npmjs.com/advisories/1500
+[32m[1mfix available[22m[39m via \`npm audit fix\`
+[2mnode_modules/@gatsbyjs/relay-compiler/node_modules/yargs-parser[22m
+  [1myargs[22m  4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0
+  Depends on vulnerable versions of [1mos-locale[22m
+  Depends on vulnerable versions of [1myargs-parser[22m
+  [2mnode_modules/@gatsbyjs/relay-compiler/node_modules/yargs[22m
+    [1m@gatsbyjs/relay-compiler[22m  *
+    Depends on vulnerable versions of [1myargs[22m
+    [2mnode_modules/@gatsbyjs/relay-compiler[22m
+      [1mgatsby[22m  2.1.1 - 2.18.3 || 2.20.24-unifiedroutes.87 || 2.20.24-unifiedroutes-v2.146 - 2.20.24-unifiedroutes-v2.151 || 2.22.13-recipes-renderer.56 - 2.22.13-recipes-renderer.75 || 2.24.13-telemetry-test.100 - 2.24.13-telemetry-test.106 || >=2.24.25
+      Depends on vulnerable versions of [1m@gatsbyjs/relay-compiler[22m
+      Depends on vulnerable versions of [1mgatsby-cli[22m
+      [2mnode_modules/gatsby-recipes/node_modules/gatsby[22m
+      [2mnode_modules/gatsby[22m
+        [1mgatsby-interface[22m  <=0.0.165-bump-reach-deps-20200527T1634 || 0.0.165 || 0.0.166
+        Depends on vulnerable versions of [1mgatsby[22m
+        [2mnode_modules/gatsby-recipes/node_modules/gatsby-interface[22m
+          [1mgatsby-recipes[22m  0.1.32-recipes-renderer.56 - 0.1.32-recipes-renderer.75 || 0.1.58-telemetry-test.100 - 0.1.58-telemetry-test.106 || >=0.2.0
+          Depends on vulnerable versions of [1mgatsby-interface[22m
+          [2mnode_modules/gatsby-recipes[22m
+            [1mgatsby-cli[22m  2.12.38-recipes-renderer.56 - 2.12.38-recipes-renderer.75 || 2.12.68-telemetry-test.100 - 2.12.68-telemetry-test.106 || >=2.12.70
+            Depends on vulnerable versions of [1mgatsby-recipes[22m
+            [2mnode_modules/gatsby-cli[22m
+
+9 [1mlow[22m severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+exitCode=1
+`
+
+exports[`test/reporters/detail.js TAP gatsby.json > no color 1`] = `
+# npm audit report
+
+mem  <4.0.0
+Denial of Service - https://npmjs.com/advisories/1084
+fix available via \`npm audit fix\`
+node_modules/mem
+  os-locale  2.0.0 - 3.0.0
+  Depends on vulnerable versions of mem
+  node_modules/os-locale
+    yargs  4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0
+    Depends on vulnerable versions of os-locale
+    Depends on vulnerable versions of yargs-parser
+    node_modules/@gatsbyjs/relay-compiler/node_modules/yargs
+      @gatsbyjs/relay-compiler  *
+      Depends on vulnerable versions of yargs
+      node_modules/@gatsbyjs/relay-compiler
+        gatsby  2.1.1 - 2.18.3 || 2.20.24-unifiedroutes.87 || 2.20.24-unifiedroutes-v2.146 - 2.20.24-unifiedroutes-v2.151 || 2.22.13-recipes-renderer.56 - 2.22.13-recipes-renderer.75 || 2.24.13-telemetry-test.100 - 2.24.13-telemetry-test.106 || >=2.24.25
+        Depends on vulnerable versions of @gatsbyjs/relay-compiler
+        Depends on vulnerable versions of gatsby-cli
+        node_modules/gatsby-recipes/node_modules/gatsby
+        node_modules/gatsby
+          gatsby-interface  <=0.0.165-bump-reach-deps-20200527T1634 || 0.0.165 || 0.0.166
+          Depends on vulnerable versions of gatsby
+          node_modules/gatsby-recipes/node_modules/gatsby-interface
+            gatsby-recipes  0.1.32-recipes-renderer.56 - 0.1.32-recipes-renderer.75 || 0.1.58-telemetry-test.100 - 0.1.58-telemetry-test.106 || >=0.2.0
+            Depends on vulnerable versions of gatsby-interface
+            node_modules/gatsby-recipes
+              gatsby-cli  2.12.38-recipes-renderer.56 - 2.12.38-recipes-renderer.75 || 2.12.68-telemetry-test.100 - 2.12.68-telemetry-test.106 || >=2.12.70
+              Depends on vulnerable versions of gatsby-recipes
+              node_modules/gatsby-cli
+
+yargs-parser  <=13.1.1 || 14.0.0 - 15.0.0 || 16.0.0 - 18.1.1
+Prototype Pollution - https://npmjs.com/advisories/1500
+fix available via \`npm audit fix\`
+node_modules/@gatsbyjs/relay-compiler/node_modules/yargs-parser
+  yargs  4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0
+  Depends on vulnerable versions of os-locale
+  Depends on vulnerable versions of yargs-parser
+  node_modules/@gatsbyjs/relay-compiler/node_modules/yargs
+    @gatsbyjs/relay-compiler  *
+    Depends on vulnerable versions of yargs
+    node_modules/@gatsbyjs/relay-compiler
+      gatsby  2.1.1 - 2.18.3 || 2.20.24-unifiedroutes.87 || 2.20.24-unifiedroutes-v2.146 - 2.20.24-unifiedroutes-v2.151 || 2.22.13-recipes-renderer.56 - 2.22.13-recipes-renderer.75 || 2.24.13-telemetry-test.100 - 2.24.13-telemetry-test.106 || >=2.24.25
+      Depends on vulnerable versions of @gatsbyjs/relay-compiler
+      Depends on vulnerable versions of gatsby-cli
+      node_modules/gatsby-recipes/node_modules/gatsby
+      node_modules/gatsby
+        gatsby-interface  <=0.0.165-bump-reach-deps-20200527T1634 || 0.0.165 || 0.0.166
+        Depends on vulnerable versions of gatsby
+        node_modules/gatsby-recipes/node_modules/gatsby-interface
+          gatsby-recipes  0.1.32-recipes-renderer.56 - 0.1.32-recipes-renderer.75 || 0.1.58-telemetry-test.100 - 0.1.58-telemetry-test.106 || >=0.2.0
+          Depends on vulnerable versions of gatsby-interface
+          node_modules/gatsby-recipes
+            gatsby-cli  2.12.38-recipes-renderer.56 - 2.12.38-recipes-renderer.75 || 2.12.68-telemetry-test.100 - 2.12.68-telemetry-test.106 || >=2.12.70
+            Depends on vulnerable versions of gatsby-recipes
+            node_modules/gatsby-cli
+
+9 low severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+exitCode=1
+`
+
 exports[`test/reporters/detail.js TAP git-dep.json > default settings 1`] = `
 [1m# npm audit report[22m
 

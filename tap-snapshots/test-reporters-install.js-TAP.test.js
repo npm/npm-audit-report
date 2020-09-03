@@ -101,6 +101,42 @@ To address all issues, run:
 exitCode=undefined
 `
 
+exports[`test/reporters/install.js TAP gatsby.json > default settings 1`] = `
+9 [1mlow[22m severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run \`npm audit\` for details.
+exitCode=1
+`
+
+exports[`test/reporters/install.js TAP gatsby.json > no color 1`] = `
+9 low severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run \`npm audit\` for details.
+exitCode=1
+`
+
+exports[`test/reporters/install.js TAP gatsby.json > summary color 1`] = `
+9 [1mlow[22m severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+exitCode=undefined
+`
+
+exports[`test/reporters/install.js TAP gatsby.json > summary no color 1`] = `
+9 low severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+exitCode=undefined
+`
+
 exports[`test/reporters/install.js TAP git-dep.json > default settings 1`] = `
 2 [1mlow[22m severity vulnerabilities
 

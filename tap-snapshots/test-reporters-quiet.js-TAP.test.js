@@ -15,6 +15,11 @@ exports[`test/reporters/quiet.js TAP dep-vuln-with-own-vuln.json > default setti
 exitCode=1
 `
 
+exports[`test/reporters/quiet.js TAP gatsby.json > default settings 1`] = `
+
+exitCode=1
+`
+
 exports[`test/reporters/quiet.js TAP git-dep.json > default settings 1`] = `
 
 exitCode=1
