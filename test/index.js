@@ -9,6 +9,15 @@ t.equal(nar.reporters.json, require('../lib/reporters/json.js'))
 t.equal(nar.reporters.quiet, require('../lib/reporters/quiet.js'))
 
 const metadata = { vulnerabilities: {} }
+const highMeta = {
+  vulnerabilities: {
+    high: 99,
+    low: 0,
+    critical: 0,
+    total: 99
+  }
+}
+
 const fake = { reporter: 'fake' }
 t.strictSame(nar({ foo: 'bar', metadata }, fake), {
   exitCode: 0,
@@ -33,6 +42,18 @@ t.strictSame(nar({ foo: 'bar', toJSON: () => ({ bar: 'baz', metadata }) }, fake)
     },
   }
 }, 'should call toJSON')
+
+t.strictSame(nar({ foo: 'bar', auditLevel: null, metadata: highMeta }, fake), {
+  exitCode: 1,
+  report: {
+    data: { foo: 'bar', auditLevel: null, metadata: highMeta },
+    options: {
+      color: true,
+      unicode: true,
+      indent: 2,
+    },
+  }
+}, 'null auditLevel')
 
 t.test('install is default reporter', async t => {
   const fix = fixture('one-vuln')
