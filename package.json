@@ -26,8 +26,8 @@
     "chalk": "^4.0.0"
   },
   "devDependencies": {
-    "tap": "^14.10.7",
-    "require-inject": "^1.4.4"
+    "require-inject": "^1.4.4",
+    "tap": "^14.10.7"
   },
   "directories": {
     "lib": "lib",
