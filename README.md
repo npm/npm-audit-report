@@ -46,7 +46,7 @@ and uses [`@npmcli/arborist`](http://npm.im/@npmcli/arborist) to calculate
 required remediations and affected nodes in the dependency graph.  This
 data is serialized and provided as an `"auditReportVersion": 2` object.
 
-Version 2 of this module expects to recieve an instance (or serialized JSON
+Version 2 of this module expects to receive an instance (or serialized JSON
 version of) the `AuditReport` class from Arborist, which is returned by
 `arborist.audit()` and stored on the instance as `arborist.auditReport`.
 
