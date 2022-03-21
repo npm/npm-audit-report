@@ -1,7 +1,25 @@
-/node_modules
-/coverage
-.vscode
-/.nyc_output
-.DS_Store
-.idea
-npm-audit-report.iml
+# This file is automatically added by @npmcli/template-oss. Do not edit.
+
+# ignore everything in the root
+/*
+
+# keep these
+!/.eslintrc.local.*
+!**/.gitignore
+!/docs/
+!/tap-snapshots/
+!/test/
+!/map.js
+!/scripts/
+!/README*
+!/LICENSE*
+!/CHANGELOG*
+!/.commitlintrc.js
+!/.eslintrc.js
+!/.github/
+!/.gitignore
+!/.npmrc
+!/SECURITY.md
+!/bin/
+!/lib/
+!/package.json
