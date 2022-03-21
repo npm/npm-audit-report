@@ -77,16 +77,9 @@ Will install nyc@15.0.0, which is a breaking change
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/mkdirp[22m
   [2mnode_modules/nyc/node_modules/mkdirp[22m
-    [1mnyc[22m  6.2.0-alpha - 13.1.0
-    Depends on vulnerable versions of [1mmkdirp[22m
-    Depends on vulnerable versions of [1myargs[22m
-    [2mnode_modules/nyc[22m
   [1moptimist[22m  >=0.6.0
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/nyc/node_modules/optimist[22m
-    [1mhandlebars[22m  <=4.7.3
-    Depends on vulnerable versions of [1moptimist[22m
-    [2mnode_modules/nyc/node_modules/handlebars[22m
 
 [1mkind-of[22m  6.0.0 - 6.0.2
 [1mValidation Bypass[22m - https://npmjs.com/advisories/1490
@@ -197,16 +190,9 @@ node_modules/nyc/node_modules/minimist
   Depends on vulnerable versions of minimist
   node_modules/mkdirp
   node_modules/nyc/node_modules/mkdirp
-    nyc  6.2.0-alpha - 13.1.0
-    Depends on vulnerable versions of mkdirp
-    Depends on vulnerable versions of yargs
-    node_modules/nyc
   optimist  >=0.6.0
   Depends on vulnerable versions of minimist
   node_modules/nyc/node_modules/optimist
-    handlebars  <=4.7.3
-    Depends on vulnerable versions of optimist
-    node_modules/nyc/node_modules/handlebars
 
 kind-of  6.0.0 - 6.0.2
 Validation Bypass - https://npmjs.com/advisories/1490
@@ -256,12 +242,6 @@ exports[`test/reporters/detail.js TAP dep-vuln-with-own-vuln.json > default sett
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/mkdirp[22m
 
-[1mmkdirp[22m  <=0.5.4
-Severity: [31m[1mhigh[22m[39m
-[1mFile System Pollution[22m - https://npmjs.com/advisories/42069
-Depends on vulnerable versions of [1mminimist[22m
-[32m[1mfix available[22m[39m via \`npm audit fix\`
-[2mnode_modules/mkdirp[22m
 
 [31m[1m2[22m[39m vulnerabilities (1 [1mlow[22m, 1 [31m[1mhigh[22m[39m)
 
@@ -281,12 +261,6 @@ node_modules/minimist
   Depends on vulnerable versions of minimist
   node_modules/mkdirp
 
-mkdirp  <=0.5.4
-Severity: high
-File System Pollution - https://npmjs.com/advisories/42069
-Depends on vulnerable versions of minimist
-fix available via \`npm audit fix\`
-node_modules/mkdirp
 
 2 vulnerabilities (1 low, 1 high)
 
@@ -331,27 +305,6 @@ exports[`test/reporters/detail.js TAP gatsby.json > default settings 1`] = `
 [1mPrototype Pollution[22m - https://npmjs.com/advisories/1500
 [32m[1mfix available[22m[39m via \`npm audit fix\`
 [2mnode_modules/@gatsbyjs/relay-compiler/node_modules/yargs-parser[22m
-  [1myargs[22m  4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0
-  Depends on vulnerable versions of [1mos-locale[22m
-  Depends on vulnerable versions of [1myargs-parser[22m
-  [2mnode_modules/@gatsbyjs/relay-compiler/node_modules/yargs[22m
-    [1m@gatsbyjs/relay-compiler[22m  *
-    Depends on vulnerable versions of [1myargs[22m
-    [2mnode_modules/@gatsbyjs/relay-compiler[22m
-      [1mgatsby[22m  2.1.1 - 2.18.3 || 2.20.24-unifiedroutes.87 || 2.20.24-unifiedroutes-v2.146 - 2.20.24-unifiedroutes-v2.151 || 2.22.13-recipes-renderer.56 - 2.22.13-recipes-renderer.75 || 2.24.13-telemetry-test.100 - 2.24.13-telemetry-test.106 || >=2.24.25
-      Depends on vulnerable versions of [1m@gatsbyjs/relay-compiler[22m
-      Depends on vulnerable versions of [1mgatsby-cli[22m
-      [2mnode_modules/gatsby-recipes/node_modules/gatsby[22m
-      [2mnode_modules/gatsby[22m
-        [1mgatsby-interface[22m  <=0.0.165-bump-reach-deps-20200527T1634 || 0.0.165 || 0.0.166
-        Depends on vulnerable versions of [1mgatsby[22m
-        [2mnode_modules/gatsby-recipes/node_modules/gatsby-interface[22m
-          [1mgatsby-recipes[22m  0.1.32-recipes-renderer.56 - 0.1.32-recipes-renderer.75 || 0.1.58-telemetry-test.100 - 0.1.58-telemetry-test.106 || >=0.2.0
-          Depends on vulnerable versions of [1mgatsby-interface[22m
-          [2mnode_modules/gatsby-recipes[22m
-            [1mgatsby-cli[22m  2.12.38-recipes-renderer.56 - 2.12.38-recipes-renderer.75 || 2.12.68-telemetry-test.100 - 2.12.68-telemetry-test.106 || >=2.12.70
-            Depends on vulnerable versions of [1mgatsby-recipes[22m
-            [2mnode_modules/gatsby-cli[22m
 
 9 [1mlow[22m severity vulnerabilities
 
@@ -396,27 +349,6 @@ yargs-parser  <=13.1.1 || 14.0.0 - 15.0.0 || 16.0.0 - 18.1.1
 Prototype Pollution - https://npmjs.com/advisories/1500
 fix available via \`npm audit fix\`
 node_modules/@gatsbyjs/relay-compiler/node_modules/yargs-parser
-  yargs  4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0
-  Depends on vulnerable versions of os-locale
-  Depends on vulnerable versions of yargs-parser
-  node_modules/@gatsbyjs/relay-compiler/node_modules/yargs
-    @gatsbyjs/relay-compiler  *
-    Depends on vulnerable versions of yargs
-    node_modules/@gatsbyjs/relay-compiler
-      gatsby  2.1.1 - 2.18.3 || 2.20.24-unifiedroutes.87 || 2.20.24-unifiedroutes-v2.146 - 2.20.24-unifiedroutes-v2.151 || 2.22.13-recipes-renderer.56 - 2.22.13-recipes-renderer.75 || 2.24.13-telemetry-test.100 - 2.24.13-telemetry-test.106 || >=2.24.25
-      Depends on vulnerable versions of @gatsbyjs/relay-compiler
-      Depends on vulnerable versions of gatsby-cli
-      node_modules/gatsby-recipes/node_modules/gatsby
-      node_modules/gatsby
-        gatsby-interface  <=0.0.165-bump-reach-deps-20200527T1634 || 0.0.165 || 0.0.166
-        Depends on vulnerable versions of gatsby
-        node_modules/gatsby-recipes/node_modules/gatsby-interface
-          gatsby-recipes  0.1.32-recipes-renderer.56 - 0.1.32-recipes-renderer.75 || 0.1.58-telemetry-test.100 - 0.1.58-telemetry-test.106 || >=0.2.0
-          Depends on vulnerable versions of gatsby-interface
-          node_modules/gatsby-recipes
-            gatsby-cli  2.12.38-recipes-renderer.56 - 2.12.38-recipes-renderer.75 || 2.12.68-telemetry-test.100 - 2.12.68-telemetry-test.106 || >=2.12.70
-            Depends on vulnerable versions of gatsby-recipes
-            node_modules/gatsby-cli
 
 9 low severity vulnerabilities
 
@@ -609,16 +541,9 @@ Will install nyc@15.0.0, which is a breaking change
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/mkdirp[22m
   [2mnode_modules/nyc/node_modules/mkdirp[22m
-    [1mnyc[22m  6.2.0-alpha - 13.1.0
-    Depends on vulnerable versions of [1mmkdirp[22m
-    Depends on vulnerable versions of [1myargs[22m
-    [2mnode_modules/nyc[22m
   [1moptimist[22m  >=0.6.0
   Depends on vulnerable versions of [1mminimist[22m
   [2mnode_modules/nyc/node_modules/optimist[22m
-    [1mhandlebars[22m  <=4.7.3
-    Depends on vulnerable versions of [1moptimist[22m
-    [2mnode_modules/nyc/node_modules/handlebars[22m
 
 [1mkind-of[22m  6.0.0 - 6.0.2
 [1mValidation Bypass[22m - https://npmjs.com/advisories/1490
@@ -706,16 +631,9 @@ node_modules/nyc/node_modules/minimist
   Depends on vulnerable versions of minimist
   node_modules/mkdirp
   node_modules/nyc/node_modules/mkdirp
-    nyc  6.2.0-alpha - 13.1.0
-    Depends on vulnerable versions of mkdirp
-    Depends on vulnerable versions of yargs
-    node_modules/nyc
   optimist  >=0.6.0
   Depends on vulnerable versions of minimist
   node_modules/nyc/node_modules/optimist
-    handlebars  <=4.7.3
-    Depends on vulnerable versions of optimist
-    node_modules/nyc/node_modules/handlebars
 
 kind-of  6.0.0 - 6.0.2
 Validation Bypass - https://npmjs.com/advisories/1490
