@@ -19,12 +19,12 @@ t.formatSnapshot = ({report, exitCode}) => `${report}\nexitCode=${exitCode}`
 
 t.test('with colors', async t => {
   const c = colors(true)
-  t.notEqual(c.green('x'), 'x')
-  t.notEqual(c.red('x'), 'x')
-  t.notEqual(c.magenta('x'), 'x')
-  t.notEqual(c.yellow('x'), 'x')
-  t.notEqual(c.white('x'), 'x')
-  t.notEqual(c.dim('x'), 'x')
+  t.not(c.green('x'), 'x')
+  t.not(c.red('x'), 'x')
+  t.not(c.magenta('x'), 'x')
+  t.not(c.yellow('x'), 'x')
+  t.not(c.white('x'), 'x')
+  t.not(c.dim('x'), 'x')
   t.equal(c.severity('low'), c.white('low'))
   t.equal(c.severity('MoDeRaTe'), c.yellow('MoDeRaTe'))
   t.equal(c.severity('hiGH'), c.red('hiGH'))
