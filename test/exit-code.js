@@ -7,9 +7,9 @@ t.equal(exitCode({
       info: 99,
       low: 0,
       critical: 0,
-      total: 99
-    }
-  }
+      total: 99,
+    },
+  },
 }, 'low'), 0, 'has info, level set to low')
 
 t.equal(exitCode({
@@ -18,9 +18,9 @@ t.equal(exitCode({
       info: 99,
       low: 0,
       critical: 0,
-      total: 99
-    }
-  }
+      total: 99,
+    },
+  },
 }, 'info'), 1, 'has info, level set to info')
 
 t.equal(exitCode({
@@ -29,9 +29,9 @@ t.equal(exitCode({
       high: 99,
       low: 0,
       critical: 0,
-      total: 99
-    }
-  }
+      total: 99,
+    },
+  },
 }, 'critical'), 0)
 
 t.equal(exitCode({
@@ -40,7 +40,7 @@ t.equal(exitCode({
       high: 99,
       low: 0,
       critical: 0,
-      total: 99
-    }
-  }
+      total: 99,
+    },
+  },
 }, 'low'), 1)

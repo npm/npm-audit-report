@@ -8,14 +8,14 @@ const cs = {
   level: 3,
 }
 const colors = requireInject('../lib/colors.js', {
-  'chalk': requireInject('chalk', {
+  chalk: requireInject('chalk', {
     'supports-color': Object.assign(() => cs, {
       stdout: cs,
       stderr: cs,
-    })
-  })
+    }),
+  }),
 })
-t.formatSnapshot = ({report, exitCode}) => `${report}\nexitCode=${exitCode}`
+t.formatSnapshot = ({ report, exitCode }) => `${report}\nexitCode=${exitCode}`
 
 t.test('with colors', async t => {
   const c = colors(true)

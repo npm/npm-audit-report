@@ -9,28 +9,28 @@ const cs = {
   level: 3,
 }
 const Report = requireInject('../..', {
-  'chalk': requireInject('chalk', {
+  chalk: requireInject('chalk', {
     'supports-color': Object.assign(() => cs, {
       stdout: cs,
       stderr: cs,
-    })
-  })
+    }),
+  }),
 })
-t.formatSnapshot = ({report, exitCode}) => `${report}\nexitCode=${exitCode}`
+t.formatSnapshot = ({ report, exitCode }) => `${report}\nexitCode=${exitCode}`
 const install = requireInject('../../lib/reporters/install.js', {
-  'chalk': requireInject('chalk', {
+  chalk: requireInject('chalk', {
     'supports-color': Object.assign(() => cs, {
       stdout: cs,
       stderr: cs,
-    })
-  })
+    }),
+  }),
 })
 
 for (const f of fixture.files) {
   t.test(f, async t => {
     const data = fixture(f)
-    t.matchSnapshot({report:install.summary(data, {color: true})}, 'summary color')
-    t.matchSnapshot({report:install.summary(data, {color: false})}, 'summary no color')
+    t.matchSnapshot({ report: install.summary(data, { color: true }) }, 'summary color')
+    t.matchSnapshot({ report: install.summary(data, { color: false }) }, 'summary no color')
     t.matchSnapshot(Report(data, { reporter: 'install' }), 'default settings')
     t.matchSnapshot(Report(data, { reporter: 'install', color: false }), 'no color')
     t.end()

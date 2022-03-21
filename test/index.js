@@ -1,6 +1,6 @@
 const t = require('tap')
 const nar = require('../')
-nar.reporters.fake = (data, options) => ({data, options})
+nar.reporters.fake = (data, options) => ({ data, options })
 const fixture = require('./fixtures/index.js')
 
 t.equal(nar.reporters.install, require('../lib/reporters/install.js'))
@@ -14,8 +14,8 @@ const highMeta = {
     high: 99,
     low: 0,
     critical: 0,
-    total: 99
-  }
+    total: 99,
+  },
 }
 
 const fake = { reporter: 'fake' }
@@ -28,7 +28,7 @@ t.strictSame(nar({ foo: 'bar', metadata }, fake), {
       unicode: true,
       indent: 2,
     },
-  }
+  },
 }, 'default settings')
 
 t.strictSame(nar({ foo: 'bar', toJSON: () => ({ bar: 'baz', metadata }) }, fake), {
@@ -40,7 +40,7 @@ t.strictSame(nar({ foo: 'bar', toJSON: () => ({ bar: 'baz', metadata }) }, fake)
       unicode: true,
       indent: 2,
     },
-  }
+  },
 }, 'should call toJSON')
 
 t.strictSame(nar({ foo: 'bar', auditLevel: null, metadata: highMeta }, fake), {
@@ -52,7 +52,7 @@ t.strictSame(nar({ foo: 'bar', auditLevel: null, metadata: highMeta }, fake), {
       unicode: true,
       indent: 2,
     },
-  }
+  },
 }, 'null auditLevel')
 
 t.test('install is default reporter', async t => {
