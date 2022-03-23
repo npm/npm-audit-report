@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.0.0](https://github.com/npm/npm-audit-report/compare/v2.1.5...v3.0.0) (2022-03-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* this drops support for node10 and non-LTS versions of node 12 and node 14.
+
+### Bug Fixes
+
+* linting and printed check ([0e1d9e5](https://github.com/npm/npm-audit-report/commit/0e1d9e5f3c2aa5d33cad332e8a3a4a38809adbeb))
+
+
+* @npmcli/template-oss@3.1.2 ([6aa9eef](https://github.com/npm/npm-audit-report/commit/6aa9eefbae2c2a438731362d4beb3799e4d67bec))
+
 ## [1.3.3](https://github.com/npm/npm-audit-report/compare/v1.3.2...v1.3.3) (2020-03-26)
 
 
