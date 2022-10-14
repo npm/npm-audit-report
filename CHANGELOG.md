@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.0.0](https://github.com/npm/npm-audit-report/compare/v3.0.0...v4.0.0) (2022-10-10)
+
+### ⚠️ BREAKING CHANGES
+
+* `npm-audit-report` is now compatible with the following semver range for node: `^14.17.0 || ^16.13.0 || >=18.0.0`
+
+### Features
+
+* [`af74324`](https://github.com/npm/npm-audit-report/commit/af74324e943f69a0c8354fdce46745efc1cb7f61) [#67](https://github.com/npm/npm-audit-report/pull/67) postinstall for dependabot template-oss PR (@lukekarrys)
+
 ## [3.0.0](https://github.com/npm/npm-audit-report/compare/v2.1.5...v3.0.0) (2022-03-23)
 
 
