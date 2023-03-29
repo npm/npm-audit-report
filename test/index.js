@@ -2,6 +2,7 @@ const t = require('tap')
 const nar = require('../')
 nar.reporters.fake = (data, options) => ({ data, options })
 const fixture = require('./fixtures/index.js')
+const chalk = require('./fixtures/chalk.js')
 
 t.equal(nar.reporters.install, require('../lib/reporters/install.js'))
 t.equal(nar.reporters.detail, require('../lib/reporters/detail.js'))
@@ -24,7 +25,7 @@ t.strictSame(nar({ foo: 'bar', metadata }, fake), {
   report: {
     data: { foo: 'bar', metadata },
     options: {
-      color: true,
+      chalk: undefined,
       unicode: true,
       indent: 2,
     },
@@ -36,7 +37,7 @@ t.strictSame(nar({ foo: 'bar', toJSON: () => ({ bar: 'baz', metadata }) }, fake)
   report: {
     data: { bar: 'baz', metadata },
     options: {
-      color: true,
+      chalk: undefined,
       unicode: true,
       indent: 2,
     },
@@ -48,7 +49,7 @@ t.strictSame(nar({ foo: 'bar', auditLevel: null, metadata: highMeta }, fake), {
   report: {
     data: { foo: 'bar', auditLevel: null, metadata: highMeta },
     options: {
-      color: true,
+      chalk: undefined,
       unicode: true,
       indent: 2,
     },
@@ -57,8 +58,8 @@ t.strictSame(nar({ foo: 'bar', auditLevel: null, metadata: highMeta }, fake), {
 
 t.test('install is default reporter', async t => {
   const fix = fixture('one-vuln')
-  t.strictSame(nar(fix).report, nar.reporters.install(fix, {
-    color: true,
+  t.strictSame(nar(fix, { chalk: chalk.color }).report, nar.reporters.install(fix, {
+    chalk: chalk.color,
     unicode: true,
     indent: 2,
   }))

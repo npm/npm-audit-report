@@ -1,24 +1,11 @@
 const t = require('tap')
-const requireInject = require('require-inject')
-// force color support when in CI, so tests do the right thing
-const cs = {
-  hasBasic: true,
-  has256: true,
-  has16m: true,
-  level: 3,
-}
-const colors = requireInject('../lib/colors.js', {
-  chalk: requireInject('chalk', {
-    'supports-color': Object.assign(() => cs, {
-      stdout: cs,
-      stderr: cs,
-    }),
-  }),
-})
+const { color, noColor } = require('./fixtures/chalk')
+const colors = require('../lib/colors.js')
+
 t.formatSnapshot = ({ report, exitCode }) => `${report}\nexitCode=${exitCode}`
 
 t.test('with colors', async t => {
-  const c = colors(true)
+  const c = colors(color)
   t.not(c.green('x'), 'x')
   t.not(c.red('x'), 'x')
   t.not(c.magenta('x'), 'x')
@@ -36,7 +23,7 @@ t.test('with colors', async t => {
 })
 
 t.test('without colors', async t => {
-  const c = colors(false)
+  const c = colors(noColor)
   t.equal(c.green('x'), 'x')
   t.equal(c.red('x'), 'x')
   t.equal(c.magenta('x'), 'x')
