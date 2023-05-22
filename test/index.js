@@ -58,8 +58,9 @@ t.strictSame(nar({ foo: 'bar', auditLevel: null, metadata: highMeta }, fake), {
 
 t.test('install is default reporter', async t => {
   const fix = fixture('one-vuln')
-  t.strictSame(nar(fix, { chalk: chalk.color }).report, nar.reporters.install(fix, {
-    chalk: chalk.color,
+  const { color } = await chalk()
+  t.strictSame(nar(fix, { chalk: color }).report, nar.reporters.install(fix, {
+    chalk: color,
     unicode: true,
     indent: 2,
   }))

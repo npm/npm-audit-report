@@ -1,10 +1,11 @@
 const t = require('tap')
-const { color, noColor } = require('./fixtures/chalk')
+const chalk = require('./fixtures/chalk.js')
 const colors = require('../lib/colors.js')
 
 t.formatSnapshot = ({ report, exitCode }) => `${report}\nexitCode=${exitCode}`
 
 t.test('with colors', async t => {
+  const { color } = await chalk()
   const c = colors(color)
   t.not(c.green('x'), 'x')
   t.not(c.red('x'), 'x')
@@ -23,6 +24,7 @@ t.test('with colors', async t => {
 })
 
 t.test('without colors', async t => {
+  const { noColor } = await chalk()
   const c = colors(noColor)
   t.equal(c.green('x'), 'x')
   t.equal(c.red('x'), 'x')
