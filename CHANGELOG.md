@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.0.0](https://github.com/npm/npm-audit-report/compare/v4.0.0...v5.0.0) (2023-05-22)
+
+### ⚠️ BREAKING CHANGES
+
+* use a passed in chalk instance to create colors (#84)
+
+### Features
+
+* [`ef0bac5`](https://github.com/npm/npm-audit-report/commit/ef0bac5f961c96c51455c5a23076d9fb4becc198) [#84](https://github.com/npm/npm-audit-report/pull/84) use a passed in chalk instance to create colors (#84) (@lukekarrys)
+
 ## [4.0.0](https://github.com/npm/npm-audit-report/compare/v3.0.0...v4.0.0) (2022-10-10)
 
 ### ⚠️ BREAKING CHANGES
