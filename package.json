@@ -32,7 +32,7 @@
     "@npmcli/eslint-config": "^4.0.0",
     "@npmcli/template-oss": "4.19.0",
     "chalk": "^5.2.0",
-    "tap": "^16.0.0"
+    "tap": "^18.4.3"
   },
   "directories": {
     "lib": "lib",
