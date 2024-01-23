@@ -1,5 +1,26 @@
 # Changelog
 
+## [5.0.1](https://github.com/npm/npm-audit-report/compare/v5.0.0...v5.0.1) (2023-12-07)
+
+### Chores
+
+* [`36f1007`](https://github.com/npm/npm-audit-report/commit/36f100796b99f5398bea4f429a26bee2c65adb9b) [#117](https://github.com/npm/npm-audit-report/pull/117) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`96fa1c0`](https://github.com/npm/npm-audit-report/commit/96fa1c0163af4ac0a55bcb4e8e80e6e525e89fbd) [#117](https://github.com/npm/npm-audit-report/pull/117) bump @npmcli/template-oss from 4.21.1 to 4.21.3 (@dependabot[bot])
+* [`9c5f026`](https://github.com/npm/npm-audit-report/commit/9c5f0260a2e289408a05e122b7d5fa01968ae17e) [#115](https://github.com/npm/npm-audit-report/pull/115) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`cee9440`](https://github.com/npm/npm-audit-report/commit/cee94401ca949e174e4d422ed96678a3975d5969) [#115](https://github.com/npm/npm-audit-report/pull/115) bump @npmcli/template-oss from 4.19.0 to 4.21.1 (@dependabot[bot])
+* [`368652a`](https://github.com/npm/npm-audit-report/commit/368652a2b4e55c694c927d82339c13e6cd170cf6) [#94](https://github.com/npm/npm-audit-report/pull/94) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`35b9ee6`](https://github.com/npm/npm-audit-report/commit/35b9ee61180ef174f698fe01916874dd4769f07c) [#94](https://github.com/npm/npm-audit-report/pull/94) bump @npmcli/template-oss from 4.18.1 to 4.19.0 (@dependabot[bot])
+* [`91fc8e3`](https://github.com/npm/npm-audit-report/commit/91fc8e3caa0ca81332c7f94064f2f6cda9e79165) [#93](https://github.com/npm/npm-audit-report/pull/93) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`6bf612e`](https://github.com/npm/npm-audit-report/commit/6bf612ef657b90e64ed9577693d754ebaeda07cf) [#93](https://github.com/npm/npm-audit-report/pull/93) bump @npmcli/template-oss from 4.18.0 to 4.18.1 (@dependabot[bot])
+* [`73fadd1`](https://github.com/npm/npm-audit-report/commit/73fadd1c40c0c61d58ceb1da68f7e778d377e33f) [#92](https://github.com/npm/npm-audit-report/pull/92) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`fec3192`](https://github.com/npm/npm-audit-report/commit/fec319292996d802c77dfed53ec7f1e586afb7fd) [#92](https://github.com/npm/npm-audit-report/pull/92) bump @npmcli/template-oss from 4.17.0 to 4.18.0 (@dependabot[bot])
+* [`a6265b1`](https://github.com/npm/npm-audit-report/commit/a6265b1e38cd9121a79c1a2d6f1bdcf8b1346774) [#91](https://github.com/npm/npm-audit-report/pull/91) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`bae25c5`](https://github.com/npm/npm-audit-report/commit/bae25c57152e40dad36c31c15ff53463792f3790) [#91](https://github.com/npm/npm-audit-report/pull/91) bump @npmcli/template-oss from 4.15.1 to 4.17.0 (@dependabot[bot])
+* [`3dfcf02`](https://github.com/npm/npm-audit-report/commit/3dfcf027274add93829070bac7157a30e98b5177) [#90](https://github.com/npm/npm-audit-report/pull/90) enable auto publish (#90) (@wraithgar)
+* [`44b94f4`](https://github.com/npm/npm-audit-report/commit/44b94f42052b572b937606d74f6757f68a5971cd) [#87](https://github.com/npm/npm-audit-report/pull/87) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`60a8f21`](https://github.com/npm/npm-audit-report/commit/60a8f217bb2d848921564235c011acb2c7cd313b) [#87](https://github.com/npm/npm-audit-report/pull/87) postinstall for dependabot template-oss PR (@npm-cli-bot)
+* [`bcf5a8e`](https://github.com/npm/npm-audit-report/commit/bcf5a8e8b235cd279474d021b54c78a240e82693) [#87](https://github.com/npm/npm-audit-report/pull/87) bump @npmcli/template-oss from 4.14.1 to 4.15.1 (@dependabot[bot])
+
 ## [5.0.0](https://github.com/npm/npm-audit-report/compare/v4.0.0...v5.0.0) (2023-05-22)
 
 ### ⚠️ BREAKING CHANGES
