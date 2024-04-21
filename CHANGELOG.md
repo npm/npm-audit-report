@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/npm/npm-audit-report/compare/v5.0.0...v5.0.1) (2024-04-21)
+
+### Chores
+
+* [`3dfcf02`](https://github.com/npm/npm-audit-report/commit/3dfcf027274add93829070bac7157a30e98b5177) [#90](https://github.com/npm/npm-audit-report/pull/90) enable auto publish (#90) (@wraithgar)
+* [`453e8fb`](https://github.com/npm/npm-audit-report/commit/453e8fb8aaecb3528c0d4335e09781bbdf8164ba) [#122](https://github.com/npm/npm-audit-report/pull/122) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`b7abe68`](https://github.com/npm/npm-audit-report/commit/b7abe68ae3e559928a290cc53452323252d21afe) [#122](https://github.com/npm/npm-audit-report/pull/122) bump @npmcli/template-oss from 4.21.3 to 4.21.4 (@dependabot[bot])
+
 ## [5.0.0](https://github.com/npm/npm-audit-report/compare/v4.0.0...v5.0.0) (2023-05-22)
 
 ### ⚠️ BREAKING CHANGES
