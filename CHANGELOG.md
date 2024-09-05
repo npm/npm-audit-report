@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.0.0](https://github.com/npm/npm-audit-report/compare/v5.0.0...v6.0.0) (2024-09-03)
+### ⚠️ BREAKING CHANGES
+* `npm-audit-report` now supports node `^18.17.0 || >=20.5.0`
+### Bug Fixes
+* [`b9a071c`](https://github.com/npm/npm-audit-report/commit/b9a071ced7af6f2e9a993f51e144b9e0cd26eda5) [#137](https://github.com/npm/npm-audit-report/pull/137) align to npm 10 node engine range (@hashtagchris)
+### Chores
+* [`6ae4785`](https://github.com/npm/npm-audit-report/commit/6ae4785be2b746fe0b8235601da058e265a6a38f) [#137](https://github.com/npm/npm-audit-report/pull/137) run template-oss-apply (@hashtagchris)
+* [`d9a9b5a`](https://github.com/npm/npm-audit-report/commit/d9a9b5a553520fa1dc17a1f5808e11a372d7c304) [#135](https://github.com/npm/npm-audit-report/pull/135) bump @npmcli/eslint-config from 4.0.5 to 5.0.0 (@dependabot[bot])
+* [`6a5ef6a`](https://github.com/npm/npm-audit-report/commit/6a5ef6a35d2cb01af7b9159611ade9d73fd3e148) [#123](https://github.com/npm/npm-audit-report/pull/123) bump @npmcli/template-oss to 4.22.0 (@lukekarrys)
+* [`3dfcf02`](https://github.com/npm/npm-audit-report/commit/3dfcf027274add93829070bac7157a30e98b5177) [#90](https://github.com/npm/npm-audit-report/pull/90) enable auto publish (#90) (@wraithgar)
+* [`dfc6832`](https://github.com/npm/npm-audit-report/commit/dfc68324bfb01827ef85828dd5a298e5823535b2) [#136](https://github.com/npm/npm-audit-report/pull/136) postinstall for dependabot template-oss PR (@hashtagchris)
+* [`ac3cfa2`](https://github.com/npm/npm-audit-report/commit/ac3cfa2d7297cf8fbcc78679eed61ed8754461ed) [#136](https://github.com/npm/npm-audit-report/pull/136) bump @npmcli/template-oss from 4.23.1 to 4.23.3 (@dependabot[bot])
+
 ## [5.0.0](https://github.com/npm/npm-audit-report/compare/v4.0.0...v5.0.0) (2023-05-22)
 
 ### ⚠️ BREAKING CHANGES
