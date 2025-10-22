@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.0.0](https://github.com/npm/npm-audit-report/compare/v6.0.0...v7.0.0) (2025-10-22)
+### ⚠️ BREAKING CHANGES
+* `npm-audit-report` now supports node `^20.17.0 || >=22.9.0`
+### Bug Fixes
+* [`b631250`](https://github.com/npm/npm-audit-report/commit/b63125020c8b1cee8e44aed69a16fe783512ede2) [#147](https://github.com/npm/npm-audit-report/pull/147) align to npm 11 node engine range (#147) (@owlstronaut)
+### Chores
+* [`dceb293`](https://github.com/npm/npm-audit-report/commit/dceb293fdda756fb532a4a5a0ba62b7853d849e1) [#141](https://github.com/npm/npm-audit-report/pull/141) postinstall workflow updates (#141) (@owlstronaut)
+* [`2f9f435`](https://github.com/npm/npm-audit-report/commit/2f9f4354a48e9e19df6bd6163017867c942e07d1) [#146](https://github.com/npm/npm-audit-report/pull/146) bump @npmcli/template-oss from 4.26.0 to 4.27.1 (#146) (@dependabot[bot], @npm-cli-bot)
+
 ## [6.0.0](https://github.com/npm/npm-audit-report/compare/v5.0.0...v6.0.0) (2024-09-03)
 ### ⚠️ BREAKING CHANGES
 * `npm-audit-report` now supports node `^18.17.0 || >=20.5.0`
