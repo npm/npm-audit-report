@@ -56,10 +56,11 @@ provided directly.
 
 ## options
 
-| option   | values                               | default   | description |
-| :---     | :---                                 | :---      |:--- |
-| reporter | `install`, `detail`, `json`, `quiet` | `install` | specify which output format you want to use |
-| chalk    | `Chalk` instance                     | required  | a Chalk instance to use for colorizing strings. use `new chalk.Instance({ level: 0 })` for no colors |
-| unicode  | `true`, `false`                      | `true`    | indicates if unicode characters should be used|
-| indent   | Number or String                     | `2`       | indentation for `'json'` report|
-| auditLevel | 'info', 'low', 'moderate', 'high', 'critical', 'none' | `low` (ie, exit 0 if only `info` advisories are found) | level of vulnerability that will trigger a non-zero exit code (set to 'none' to always exit with a 0 status code) |
+| option        | values                                                | default                                                | description                                                                                                        |
+|:--------------|:------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------|
+| reporter      | `install`, `detail`, `json`, `quiet`                  | `install`                                              | specify which output format you want to use                                                                        |
+| chalk         | `Chalk` instance                                      | required                                               | a Chalk instance to use for colorizing strings. use `new chalk.Instance({ level: 0 })` for no colors               |
+| unicode       | `true`, `false`                                       | `true`                                                 | indicates if unicode characters should be used                                                                     |
+| indent        | Number or String                                      | `2`                                                    | indentation for `'json'` report                                                                                    |
+| auditLevel    | 'info', 'low', 'moderate', 'high', 'critical', 'none' | `low` (ie, exit 0 if only `info` advisories are found) | level of vulnerability that will trigger a non-zero exit code (set to 'none' to always exit with a 0 status code)  |
+| ignoreUnfixed | `true`, `false`                                       | `false`                                                | specify if vulnerabilities without a fix should be ignored to generate a non-zero exit code (useful for CI)        |
