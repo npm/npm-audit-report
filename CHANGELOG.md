@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.0.0](https://github.com/npm/npm-audit-report/compare/v7.0.0...v8.0.0) (2026-05-08)
+### ⚠️ BREAKING CHANGES
+* `npm-audit-report` now supports node `^22.22.2 || ^24.15.0 || >=26.0.0`
+* template-oss-apply
+### Features
+* [`40f2368`](https://github.com/npm/npm-audit-report/commit/40f2368ecdb78c8ba9963fafcc0f14f4f4306291) [#156](https://github.com/npm/npm-audit-report/pull/156) bump to new node engine range (@owlstronaut)
+* [`f9f2db4`](https://github.com/npm/npm-audit-report/commit/f9f2db4c79e2e469b9825e9e717f2e46b6f2415e) [#156](https://github.com/npm/npm-audit-report/pull/156) template-oss-apply (@owlstronaut)
+### Chores
+* [`3622d64`](https://github.com/npm/npm-audit-report/commit/3622d64f06fb6ea32f517865018987f88f811073) [#156](https://github.com/npm/npm-audit-report/pull/156) template-oss-apply (@owlstronaut)
+* [`664c714`](https://github.com/npm/npm-audit-report/commit/664c7142685a0ae12a39757470f617e308e73098) [#149](https://github.com/npm/npm-audit-report/pull/149) bump @npmcli/eslint-config from 5.1.0 to 6.0.0 (#149) (@dependabot[bot])
+* [`bb67fb1`](https://github.com/npm/npm-audit-report/commit/bb67fb1280f8bc5f86e67c0977a1492cbcf0c293) [#154](https://github.com/npm/npm-audit-report/pull/154) bump @npmcli/template-oss from 4.29.0 to 4.30.0 (#154) (@dependabot[bot], @npm-cli-bot)
+
 ## [7.0.0](https://github.com/npm/npm-audit-report/compare/v6.0.0...v7.0.0) (2025-10-22)
 ### ⚠️ BREAKING CHANGES
 * `npm-audit-report` now supports node `^20.17.0 || >=22.9.0`
