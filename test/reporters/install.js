@@ -1,6 +1,5 @@
 const t = require('tap')
 const fixture = require('../fixtures/index.js')
-const chalk = require('../fixtures/chalk')
 const Report = require('../..')
 const install = require('../../lib/reporters/install.js')
 
@@ -9,11 +8,10 @@ t.formatSnapshot = ({ report, exitCode }) => `${report}\nexitCode=${exitCode}`
 for (const f of fixture.files) {
   t.test(f, async t => {
     const data = fixture(f)
-    const { color, noColor } = await chalk()
-    t.matchSnapshot({ report: install.summary(data, { chalk: color }) }, 'summary color')
-    t.matchSnapshot({ report: install.summary(data, { chalk: noColor }) }, 'summary no color')
-    t.matchSnapshot(Report(data, { reporter: 'install', chalk: color }), 'default settings')
-    t.matchSnapshot(Report(data, { reporter: 'install', chalk: noColor }), 'no color')
+    t.matchSnapshot({ report: install.summary(data, { color: true }) }, 'summary color')
+    t.matchSnapshot({ report: install.summary(data, { color: false }) }, 'summary no color')
+    t.matchSnapshot(Report(data, { reporter: 'install', color: true }), 'default settings')
+    t.matchSnapshot(Report(data, { reporter: 'install', color: false }), 'no color')
     t.end()
   })
 }
